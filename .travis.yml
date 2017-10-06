@@ -10,4 +10,4 @@ before_install:
 script:
 - travis_retry xcodebuild -project Switchboard.xcodeproj -scheme Switchboard -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -enableCodeCoverage YES test | xcpretty --test
 - travis_retry xcodebuild -project Switchboard.xcodeproj -scheme SwitchboardExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -enableCodeCoverage YES test | xcpretty --test
-# - pod lib lint --allow-warnings
+- pod lib lint --allow-warnings
