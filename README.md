@@ -19,7 +19,7 @@ Switchboard for iOS is licensed under the [Apache Software License, 2.0 ("Apache
 
 ## Authors
 
-Switchboard for iOS is brought to you by [Rob Phillips](https://github.com/iwasrobbed) and the rest of the [Keepsafe team](https://www.getkeepsafe.com/about.html). We'd love to have you contribute.
+Switchboard for iOS is brought to you by [Rob Phillips](https://github.com/iwasrobbed) and the rest of the [Keepsafe team](https://www.getkeepsafe.com/about.html). We'd love to have you contribute or [join us](https://www.getkeepsafe.com/careers.html).
 
 ## Used in production by
 
