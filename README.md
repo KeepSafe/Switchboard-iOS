@@ -10,15 +10,15 @@ Simple A/B testing and feature flags for iOS built on top of [Switchboard](https
 
 ## What it does
 
-Switchboard is a simple way to remote control your mobile application even after you shipped it to your users' devices. Use switchboard to:
+Switchboard is a simple way to remote control your mobile application even after you've shipped it to your users' devices, so you can use Switchboard to:
 
 - Stage-rollout new features to users
-- A/B-test user flows, messaging, colors, features
-- anything you want to remote-control
+- A/B-test user flows, messaging, colors, features, etc.
+- anything else you want to remote-control
 
-Switchboard lets you control what happens in your app. Quick, easy, useful.
+Switchboard lets you control what happens in your app in a quick, easy, and useful manner.
 
-Switchboard segments your users consistently. Because user segmentation is based only on a UUID that is computed once, the experience you switch on and off using Switchboard is consistent across sessions.
+Additionally, Switchboard segments your users consistently; because user segmentation is based upon a UUID that is computed once, the experience you switch on and off using Switchboard is consistent across sessions.
 
 ## What it does not do
 
@@ -69,7 +69,7 @@ Please use the [Github issue tracker](https://github.com/KeepSafe/Switchboard-iO
 
 ## License
 
-Switchboard for iOS is licensed under the [Apache Software License, 2.0 ("Apache 2.0")](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0))
+Switchboard for iOS is licensed under the [Apache Software License, 2.0 ("Apache 2.0")](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
 
 ## Authors
 
