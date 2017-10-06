@@ -1,5 +1,11 @@
 # Switchboard for iOS
 
+[![Build Status](https://travis-ci.com/KeepSafe/Switchboard-iOS.svg?token=FkPqyrwwnAY4pErzdxwy&branch=master)](https://travis-ci.com/KeepSafe/Switchboard-iOS)
+[![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
+[![CocoaPods](https://img.shields.io/cocoapods/v/Switchboard.svg?maxAge=2592000)]()
+[![Swift 3](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
+[![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
+
 Simple A/B testing and feature flags for iOS built on top of [Switchboard](https://github.com/KeepSafe/Switchboard).
 
 ## What it does
