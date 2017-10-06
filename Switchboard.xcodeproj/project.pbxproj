@@ -1,0 +1,992 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D403DFF61F7074530083242E /* Switchboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; };
+		D403E0151F7075420083242E /* Switchboard.h in Headers */ = {isa = PBXBuildFile; fileRef = D403E0141F7074A50083242E /* Switchboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */; };
+		D42318901F84695B00A66EDC /* Switchboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; };
+		D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607C1F84463300F385D3 /* AppDelegate.swift */; };
+		D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0609A1F84473600F385D3 /* ExampleSwitchboard.swift */; };
+		D42318931F846C6C00A66EDC /* ExampleSwitchboardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E060BC1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift */; };
+		D42318941F846C6C00A66EDC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607E1F84463300F385D3 /* MainViewController.swift */; };
+		D42937321F79AF51000D06D6 /* SwitchboardDebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937311F79AD72000D06D6 /* SwitchboardDebugController.swift */; };
+		D42937341F79B7E8000D06D6 /* SwitchboardDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937331F79B7E8000D06D6 /* SwitchboardDebugView.swift */; };
+		D42937821F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937811F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift */; };
+		D42937891F7C2431000D06D6 /* SwitchboardDebugTapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937881F7C2431000D06D6 /* SwitchboardDebugTapCell.swift */; };
+		D429378F1F7C4005000D06D6 /* SwitchboardDebugToggleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429378E1F7C4005000D06D6 /* SwitchboardDebugToggleCell.swift */; };
+		D429379E1F7C4890000D06D6 /* SwitchboardDebugSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429379D1F7C4890000D06D6 /* SwitchboardDebugSetting.swift */; };
+		D42937A01F7C4FCF000D06D6 /* SwitchboardDebugTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429379F1F7C4FCF000D06D6 /* SwitchboardDebugTextFieldCell.swift */; };
+		D42937A21F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937A11F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift */; };
+		D42937AF1F7C5F0E000D06D6 /* SwitchboardDebugEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937A81F7C5EE5000D06D6 /* SwitchboardDebugEditView.swift */; };
+		D42937B01F7C5F0E000D06D6 /* SwitchboardDebugExperimentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937A91F7C5EE5000D06D6 /* SwitchboardDebugExperimentEditView.swift */; };
+		D42937B11F7C5F0E000D06D6 /* SwitchboardDebugFeatureEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AA1F7C5EE5000D06D6 /* SwitchboardDebugFeatureEditView.swift */; };
+		D42937B21F7C5F12000D06D6 /* SwitchboardDebugExperimentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AC1F7C5EE5000D06D6 /* SwitchboardDebugExperimentView.swift */; };
+		D42937B31F7C5F12000D06D6 /* SwitchboardDebugFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */; };
+		D42937B41F7C5F12000D06D6 /* SwitchboardDebugListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */; };
+		D42938071F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42938061F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift */; };
+		D4C0785B1F748B7600C585F0 /* TestAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */; };
+		D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */; };
+		D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607C1F84463300F385D3 /* AppDelegate.swift */; };
+		D4E0607F1F84463300F385D3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607E1F84463300F385D3 /* MainViewController.swift */; };
+		D4E060841F84463300F385D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4E060831F84463300F385D3 /* Assets.xcassets */; };
+		D4E060871F84463300F385D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4E060851F84463300F385D3 /* LaunchScreen.storyboard */; };
+		D4E0609B1F84473600F385D3 /* ExampleSwitchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0609A1F84473600F385D3 /* ExampleSwitchboard.swift */; };
+		D4E0609D1F84493C00F385D3 /* Switchboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; };
+		D4E0609E1F84493C00F385D3 /* Switchboard.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4E060B51F844D0D00F385D3 /* SwitchboardDebugUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E060B41F844D0D00F385D3 /* SwitchboardDebugUITests.swift */; };
+		D4E060BD1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E060BC1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift */; };
+		D4E07F541F707D78003F5A89 /* SwitchboardExperimentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F531F707D78003F5A89 /* SwitchboardExperimentTests.swift */; };
+		D4E07F561F707ED0003F5A89 /* SwitchboardDefaultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E00E1F7074A50083242E /* SwitchboardDefaultStore.swift */; };
+		D4E07F571F707ED0003F5A89 /* SwitchboardExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E00F1F7074A50083242E /* SwitchboardExperiment.swift */; };
+		D4E07F581F707ED0003F5A89 /* SwitchboardFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E0101F7074A50083242E /* SwitchboardFeature.swift */; };
+		D4E07F591F707ED0003F5A89 /* SwitchboardKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E0111F7074A50083242E /* SwitchboardKeys.swift */; };
+		D4E07F5A1F707ED4003F5A89 /* SwitchboardAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E0091F7074A50083242E /* SwitchboardAnalyticsProvider.swift */; };
+		D4E07F5B1F707ED4003F5A89 /* SwitchboardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E00A1F7074A50083242E /* SwitchboardClient.swift */; };
+		D4E07F5C1F707ED4003F5A89 /* SwitchboardStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E00B1F7074A50083242E /* SwitchboardStorable.swift */; };
+		D4E07F5D1F707ED4003F5A89 /* SwitchboardValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D403E00C1F7074A50083242E /* SwitchboardValue.swift */; };
+		D4E07F8C1F70983E003F5A89 /* Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F8B1F70983E003F5A89 /* Switchboard.swift */; };
+		D4E07F911F71B118003F5A89 /* SwitchboardFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F901F71B118003F5A89 /* SwitchboardFeatureTests.swift */; };
+		D4E07F931F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F921F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift */; };
+		D4E07F951F71B5D5003F5A89 /* SwitchboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F941F71B5D5003F5A89 /* SwitchboardTests.swift */; };
+		D4E07F9C1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */; };
+		D4E07FAC1F71C3A4003F5A89 /* SwitchboardCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07FAB1F71C3A4003F5A89 /* SwitchboardCacheable.swift */; };
+		D4E07FAF1F71C436003F5A89 /* SwitchboardCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07FAE1F71C436003F5A89 /* SwitchboardCache.swift */; };
+		D4F26D9F1F741C7F006D2FA0 /* SwitchboardLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */; };
+		D4F26DA91F743168006D2FA0 /* SwitchboardProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */; };
+		D4F26DAB1F743483006D2FA0 /* SwitchboardPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */; };
+		D4FF867D1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF867C1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D403DFF71F7074530083242E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D403DFE31F7074530083242E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D403DFEB1F7074530083242E;
+			remoteInfo = Switchboard;
+		};
+		D4E0609F1F84493C00F385D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D403DFE31F7074530083242E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D403DFEB1F7074530083242E;
+			remoteInfo = Switchboard;
+		};
+		D4E060B71F844D0D00F385D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D403DFE31F7074530083242E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4E060791F84463300F385D3;
+			remoteInfo = SwitchboardExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4E060A11F84493C00F385D3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4E0609E1F84493C00F385D3 /* Switchboard.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D403DFEC1F7074530083242E /* Switchboard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Switchboard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D403DFF51F7074530083242E /* SwitchboardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitchboardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D403DFFC1F7074530083242E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D403E0091F7074A50083242E /* SwitchboardAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardAnalyticsProvider.swift; sourceTree = "<group>"; };
+		D403E00A1F7074A50083242E /* SwitchboardClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardClient.swift; sourceTree = "<group>"; };
+		D403E00B1F7074A50083242E /* SwitchboardStorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardStorable.swift; sourceTree = "<group>"; };
+		D403E00C1F7074A50083242E /* SwitchboardValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardValue.swift; sourceTree = "<group>"; };
+		D403E00E1F7074A50083242E /* SwitchboardDefaultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDefaultStore.swift; sourceTree = "<group>"; };
+		D403E00F1F7074A50083242E /* SwitchboardExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardExperiment.swift; sourceTree = "<group>"; };
+		D403E0101F7074A50083242E /* SwitchboardFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardFeature.swift; sourceTree = "<group>"; };
+		D403E0111F7074A50083242E /* SwitchboardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardKeys.swift; sourceTree = "<group>"; };
+		D403E0131F7074A50083242E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D403E0141F7074A50083242E /* Switchboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Switchboard.h; sourceTree = "<group>"; };
+		D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Switchboard.swift"; sourceTree = "<group>"; };
+		D42937311F79AD72000D06D6 /* SwitchboardDebugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugController.swift; sourceTree = "<group>"; };
+		D42937331F79B7E8000D06D6 /* SwitchboardDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugView.swift; sourceTree = "<group>"; };
+		D42937811F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwitchboardExperiment+Debug.swift"; sourceTree = "<group>"; };
+		D42937881F7C2431000D06D6 /* SwitchboardDebugTapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugTapCell.swift; sourceTree = "<group>"; };
+		D429378E1F7C4005000D06D6 /* SwitchboardDebugToggleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugToggleCell.swift; sourceTree = "<group>"; };
+		D429379D1F7C4890000D06D6 /* SwitchboardDebugSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugSetting.swift; sourceTree = "<group>"; };
+		D429379F1F7C4FCF000D06D6 /* SwitchboardDebugTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugTextFieldCell.swift; sourceTree = "<group>"; };
+		D42937A11F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugTextViewCell.swift; sourceTree = "<group>"; };
+		D42937A81F7C5EE5000D06D6 /* SwitchboardDebugEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugEditView.swift; sourceTree = "<group>"; };
+		D42937A91F7C5EE5000D06D6 /* SwitchboardDebugExperimentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugExperimentEditView.swift; sourceTree = "<group>"; };
+		D42937AA1F7C5EE5000D06D6 /* SwitchboardDebugFeatureEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugFeatureEditView.swift; sourceTree = "<group>"; };
+		D42937AC1F7C5EE5000D06D6 /* SwitchboardDebugExperimentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugExperimentView.swift; sourceTree = "<group>"; };
+		D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugFeatureView.swift; sourceTree = "<group>"; };
+		D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugListView.swift; sourceTree = "<group>"; };
+		D42938061F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugButtonCell.swift; sourceTree = "<group>"; };
+		D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnalyticsProvider.swift; sourceTree = "<group>"; };
+		D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugControllerTests.swift; sourceTree = "<group>"; };
+		D4E0607A1F84463300F385D3 /* SwitchboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4E0607C1F84463300F385D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4E0607E1F84463300F385D3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D4E060831F84463300F385D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4E060861F84463300F385D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4E060881F84463300F385D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4E0609A1F84473600F385D3 /* ExampleSwitchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSwitchboard.swift; sourceTree = "<group>"; };
+		D4E060B21F844D0D00F385D3 /* SwitchboardDebugUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitchboardDebugUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4E060B41F844D0D00F385D3 /* SwitchboardDebugUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugUITests.swift; sourceTree = "<group>"; };
+		D4E060B61F844D0D00F385D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4E060BC1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSwitchboardAnalytics.swift; sourceTree = "<group>"; };
+		D4E07F531F707D78003F5A89 /* SwitchboardExperimentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardExperimentTests.swift; sourceTree = "<group>"; };
+		D4E07F8B1F70983E003F5A89 /* Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switchboard.swift; sourceTree = "<group>"; };
+		D4E07F901F71B118003F5A89 /* SwitchboardFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardFeatureTests.swift; sourceTree = "<group>"; };
+		D4E07F921F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDefaultStoreTests.swift; sourceTree = "<group>"; };
+		D4E07F941F71B5D5003F5A89 /* SwitchboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardTests.swift; sourceTree = "<group>"; };
+		D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardSubclassTests.swift; sourceTree = "<group>"; };
+		D4E07FAB1F71C3A4003F5A89 /* SwitchboardCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCacheable.swift; sourceTree = "<group>"; };
+		D4E07FAE1F71C436003F5A89 /* SwitchboardCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCache.swift; sourceTree = "<group>"; };
+		D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardLogging.swift; sourceTree = "<group>"; };
+		D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardProperties.swift; sourceTree = "<group>"; };
+		D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardPropertiesTests.swift; sourceTree = "<group>"; };
+		D4FF867C1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCacheTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D403DFE81F7074530083242E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D403DFF21F7074530083242E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D403DFF61F7074530083242E /* Switchboard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060771F84463300F385D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4E0609D1F84493C00F385D3 /* Switchboard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060AF1F844D0D00F385D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D42318901F84695B00A66EDC /* Switchboard.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D403DFE21F7074530083242E = {
+			isa = PBXGroup;
+			children = (
+				D403E0061F7074A50083242E /* Switchboard */,
+				D403DFF91F7074530083242E /* SwitchboardTests */,
+				D4E0607B1F84463300F385D3 /* SwitchboardExample */,
+				D4E060B31F844D0D00F385D3 /* SwitchboardDebugUITests */,
+				D403DFED1F7074530083242E /* Products */,
+				D423188F1F84695B00A66EDC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D403DFED1F7074530083242E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D403DFEC1F7074530083242E /* Switchboard.framework */,
+				D403DFF51F7074530083242E /* SwitchboardTests.xctest */,
+				D4E0607A1F84463300F385D3 /* SwitchboardExample.app */,
+				D4E060B21F844D0D00F385D3 /* SwitchboardDebugUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D403DFF91F7074530083242E /* SwitchboardTests */ = {
+			isa = PBXGroup;
+			children = (
+				D403DFFC1F7074530083242E /* Info.plist */,
+				D4E0606D1F82F44A00F385D3 /* Debugging */,
+				D4C078591F748B6D00C585F0 /* Helpers */,
+				D4FF867C1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift */,
+				D4E07F921F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift */,
+				D4E07F531F707D78003F5A89 /* SwitchboardExperimentTests.swift */,
+				D4E07F901F71B118003F5A89 /* SwitchboardFeatureTests.swift */,
+				D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */,
+				D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */,
+				D4E07F941F71B5D5003F5A89 /* SwitchboardTests.swift */,
+			);
+			path = SwitchboardTests;
+			sourceTree = "<group>";
+		};
+		D403E0061F7074A50083242E /* Switchboard */ = {
+			isa = PBXGroup;
+			children = (
+				D403E0071F7074A50083242E /* Source */,
+				D403E0121F7074A50083242E /* Supporting Files */,
+			);
+			path = Switchboard;
+			sourceTree = "<group>";
+		};
+		D403E0071F7074A50083242E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				D42937301F79AD72000D06D6 /* Debugging */,
+				D403E0081F7074A50083242E /* Protocols */,
+				D4E07F8B1F70983E003F5A89 /* Switchboard.swift */,
+				D4E07FAE1F71C436003F5A89 /* SwitchboardCache.swift */,
+				D403E00E1F7074A50083242E /* SwitchboardDefaultStore.swift */,
+				D403E00F1F7074A50083242E /* SwitchboardExperiment.swift */,
+				D403E0101F7074A50083242E /* SwitchboardFeature.swift */,
+				D403E0111F7074A50083242E /* SwitchboardKeys.swift */,
+				D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */,
+				D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		D403E0081F7074A50083242E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D403E0091F7074A50083242E /* SwitchboardAnalyticsProvider.swift */,
+				D4E07FAB1F71C3A4003F5A89 /* SwitchboardCacheable.swift */,
+				D403E00A1F7074A50083242E /* SwitchboardClient.swift */,
+				D403E00B1F7074A50083242E /* SwitchboardStorable.swift */,
+				D403E00C1F7074A50083242E /* SwitchboardValue.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D403E0121F7074A50083242E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D403E0131F7074A50083242E /* Info.plist */,
+				D403E0141F7074A50083242E /* Switchboard.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D423188C1F845C6C00A66EDC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D423188F1F84695B00A66EDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D42937301F79AD72000D06D6 /* Debugging */ = {
+			isa = PBXGroup;
+			children = (
+				D42937851F7C23F2000D06D6 /* Cells */,
+				D42937A71F7C5EE5000D06D6 /* Editing */,
+				D42937801F7C0E36000D06D6 /* Extensions */,
+				D42937AB1F7C5EE5000D06D6 /* Listing */,
+				D42937981F7C4808000D06D6 /* Settings */,
+				D42937311F79AD72000D06D6 /* SwitchboardDebugController.swift */,
+				D42937331F79B7E8000D06D6 /* SwitchboardDebugView.swift */,
+			);
+			path = Debugging;
+			sourceTree = "<group>";
+		};
+		D42937801F7C0E36000D06D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D42937811F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D42937851F7C23F2000D06D6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D42938061F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift */,
+				D42937881F7C2431000D06D6 /* SwitchboardDebugTapCell.swift */,
+				D429379F1F7C4FCF000D06D6 /* SwitchboardDebugTextFieldCell.swift */,
+				D42937A11F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift */,
+				D429378E1F7C4005000D06D6 /* SwitchboardDebugToggleCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D42937981F7C4808000D06D6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D429379D1F7C4890000D06D6 /* SwitchboardDebugSetting.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D42937A71F7C5EE5000D06D6 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				D42937A81F7C5EE5000D06D6 /* SwitchboardDebugEditView.swift */,
+				D42937A91F7C5EE5000D06D6 /* SwitchboardDebugExperimentEditView.swift */,
+				D42937AA1F7C5EE5000D06D6 /* SwitchboardDebugFeatureEditView.swift */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
+		D42937AB1F7C5EE5000D06D6 /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				D42937AC1F7C5EE5000D06D6 /* SwitchboardDebugExperimentView.swift */,
+				D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */,
+				D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */,
+			);
+			path = Listing;
+			sourceTree = "<group>";
+		};
+		D4C078591F748B6D00C585F0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D4E0606D1F82F44A00F385D3 /* Debugging */ = {
+			isa = PBXGroup;
+			children = (
+				D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */,
+			);
+			path = Debugging;
+			sourceTree = "<group>";
+		};
+		D4E0607B1F84463300F385D3 /* SwitchboardExample */ = {
+			isa = PBXGroup;
+			children = (
+				D4E0607C1F84463300F385D3 /* AppDelegate.swift */,
+				D4E0609A1F84473600F385D3 /* ExampleSwitchboard.swift */,
+				D4E060BC1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift */,
+				D4E0607E1F84463300F385D3 /* MainViewController.swift */,
+				D4E0609C1F84474800F385D3 /* Resources */,
+			);
+			path = SwitchboardExample;
+			sourceTree = "<group>";
+		};
+		D4E0609C1F84474800F385D3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4E060881F84463300F385D3 /* Info.plist */,
+				D4E060831F84463300F385D3 /* Assets.xcassets */,
+				D4E060851F84463300F385D3 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D4E060B31F844D0D00F385D3 /* SwitchboardDebugUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D423188C1F845C6C00A66EDC /* Extensions */,
+				D4E060B41F844D0D00F385D3 /* SwitchboardDebugUITests.swift */,
+				D4E060B61F844D0D00F385D3 /* Info.plist */,
+			);
+			path = SwitchboardDebugUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D403DFE91F7074530083242E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D403E0151F7075420083242E /* Switchboard.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D403DFEB1F7074530083242E /* Switchboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D403E0001F7074530083242E /* Build configuration list for PBXNativeTarget "Switchboard" */;
+			buildPhases = (
+				D403DFE71F7074530083242E /* Sources */,
+				D403DFE81F7074530083242E /* Frameworks */,
+				D403DFE91F7074530083242E /* Headers */,
+				D403DFEA1F7074530083242E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Switchboard;
+			productName = Switchboard;
+			productReference = D403DFEC1F7074530083242E /* Switchboard.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D403DFF41F7074530083242E /* SwitchboardTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D403E0031F7074530083242E /* Build configuration list for PBXNativeTarget "SwitchboardTests" */;
+			buildPhases = (
+				D403DFF11F7074530083242E /* Sources */,
+				D403DFF21F7074530083242E /* Frameworks */,
+				D403DFF31F7074530083242E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D403DFF81F7074530083242E /* PBXTargetDependency */,
+			);
+			name = SwitchboardTests;
+			productName = SwitchboardTests;
+			productReference = D403DFF51F7074530083242E /* SwitchboardTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D4E060791F84463300F385D3 /* SwitchboardExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4E060981F84463300F385D3 /* Build configuration list for PBXNativeTarget "SwitchboardExample" */;
+			buildPhases = (
+				D4E060761F84463300F385D3 /* Sources */,
+				D4E060771F84463300F385D3 /* Frameworks */,
+				D4E060781F84463300F385D3 /* Resources */,
+				D4E060A11F84493C00F385D3 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4E060A01F84493C00F385D3 /* PBXTargetDependency */,
+			);
+			name = SwitchboardExample;
+			productName = SwitchboardExample;
+			productReference = D4E0607A1F84463300F385D3 /* SwitchboardExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D4E060B11F844D0D00F385D3 /* SwitchboardDebugUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4E060B91F844D0D00F385D3 /* Build configuration list for PBXNativeTarget "SwitchboardDebugUITests" */;
+			buildPhases = (
+				D4E060AE1F844D0D00F385D3 /* Sources */,
+				D4E060AF1F844D0D00F385D3 /* Frameworks */,
+				D4E060B01F844D0D00F385D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4E060B81F844D0D00F385D3 /* PBXTargetDependency */,
+			);
+			name = SwitchboardDebugUITests;
+			productName = SwitchboardDebugUITests;
+			productReference = D4E060B21F844D0D00F385D3 /* SwitchboardDebugUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D403DFE31F7074530083242E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Keepsafe Software Inc";
+				TargetAttributes = {
+					D403DFEB1F7074530083242E = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					D403DFF41F7074530083242E = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					D4E060791F84463300F385D3 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					D4E060B11F844D0D00F385D3 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D4E060791F84463300F385D3;
+					};
+				};
+			};
+			buildConfigurationList = D403DFE61F7074530083242E /* Build configuration list for PBXProject "Switchboard" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D403DFE21F7074530083242E;
+			productRefGroup = D403DFED1F7074530083242E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D403DFEB1F7074530083242E /* Switchboard */,
+				D403DFF41F7074530083242E /* SwitchboardTests */,
+				D4E060791F84463300F385D3 /* SwitchboardExample */,
+				D4E060B11F844D0D00F385D3 /* SwitchboardDebugUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D403DFEA1F7074530083242E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D403DFF31F7074530083242E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060781F84463300F385D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4E060871F84463300F385D3 /* LaunchScreen.storyboard in Resources */,
+				D4E060841F84463300F385D3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060B01F844D0D00F385D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D403DFE71F7074530083242E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F26D9F1F741C7F006D2FA0 /* SwitchboardLogging.swift in Sources */,
+				D42937A21F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift in Sources */,
+				D42937B21F7C5F12000D06D6 /* SwitchboardDebugExperimentView.swift in Sources */,
+				D42937821F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift in Sources */,
+				D4E07F5D1F707ED4003F5A89 /* SwitchboardValue.swift in Sources */,
+				D42937321F79AF51000D06D6 /* SwitchboardDebugController.swift in Sources */,
+				D4E07F5A1F707ED4003F5A89 /* SwitchboardAnalyticsProvider.swift in Sources */,
+				D4E07F5B1F707ED4003F5A89 /* SwitchboardClient.swift in Sources */,
+				D4E07F8C1F70983E003F5A89 /* Switchboard.swift in Sources */,
+				D42937891F7C2431000D06D6 /* SwitchboardDebugTapCell.swift in Sources */,
+				D42937B31F7C5F12000D06D6 /* SwitchboardDebugFeatureView.swift in Sources */,
+				D42937AF1F7C5F0E000D06D6 /* SwitchboardDebugEditView.swift in Sources */,
+				D42937A01F7C4FCF000D06D6 /* SwitchboardDebugTextFieldCell.swift in Sources */,
+				D429378F1F7C4005000D06D6 /* SwitchboardDebugToggleCell.swift in Sources */,
+				D4E07F5C1F707ED4003F5A89 /* SwitchboardStorable.swift in Sources */,
+				D4E07F561F707ED0003F5A89 /* SwitchboardDefaultStore.swift in Sources */,
+				D42937B11F7C5F0E000D06D6 /* SwitchboardDebugFeatureEditView.swift in Sources */,
+				D4E07F581F707ED0003F5A89 /* SwitchboardFeature.swift in Sources */,
+				D4E07FAC1F71C3A4003F5A89 /* SwitchboardCacheable.swift in Sources */,
+				D42937B01F7C5F0E000D06D6 /* SwitchboardDebugExperimentEditView.swift in Sources */,
+				D4E07F591F707ED0003F5A89 /* SwitchboardKeys.swift in Sources */,
+				D429379E1F7C4890000D06D6 /* SwitchboardDebugSetting.swift in Sources */,
+				D4E07FAF1F71C436003F5A89 /* SwitchboardCache.swift in Sources */,
+				D42937341F79B7E8000D06D6 /* SwitchboardDebugView.swift in Sources */,
+				D42938071F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift in Sources */,
+				D4E07F571F707ED0003F5A89 /* SwitchboardExperiment.swift in Sources */,
+				D4F26DA91F743168006D2FA0 /* SwitchboardProperties.swift in Sources */,
+				D42937B41F7C5F12000D06D6 /* SwitchboardDebugListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D403DFF11F7074530083242E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F26DAB1F743483006D2FA0 /* SwitchboardPropertiesTests.swift in Sources */,
+				D4C0785B1F748B7600C585F0 /* TestAnalyticsProvider.swift in Sources */,
+				D4E07F541F707D78003F5A89 /* SwitchboardExperimentTests.swift in Sources */,
+				D4FF867D1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift in Sources */,
+				D4E07F931F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift in Sources */,
+				D4E07F951F71B5D5003F5A89 /* SwitchboardTests.swift in Sources */,
+				D4E07F9C1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift in Sources */,
+				D4E07F911F71B118003F5A89 /* SwitchboardFeatureTests.swift in Sources */,
+				D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060761F84463300F385D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4E0607F1F84463300F385D3 /* MainViewController.swift in Sources */,
+				D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */,
+				D4E060BD1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift in Sources */,
+				D4E0609B1F84473600F385D3 /* ExampleSwitchboard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4E060AE1F844D0D00F385D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */,
+				D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */,
+				D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */,
+				D42318941F846C6C00A66EDC /* MainViewController.swift in Sources */,
+				D4E060B51F844D0D00F385D3 /* SwitchboardDebugUITests.swift in Sources */,
+				D42318931F846C6C00A66EDC /* ExampleSwitchboardAnalytics.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D403DFF81F7074530083242E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D403DFEB1F7074530083242E /* Switchboard */;
+			targetProxy = D403DFF71F7074530083242E /* PBXContainerItemProxy */;
+		};
+		D4E060A01F84493C00F385D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D403DFEB1F7074530083242E /* Switchboard */;
+			targetProxy = D4E0609F1F84493C00F385D3 /* PBXContainerItemProxy */;
+		};
+		D4E060B81F844D0D00F385D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4E060791F84463300F385D3 /* SwitchboardExample */;
+			targetProxy = D4E060B71F844D0D00F385D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D4E060851F84463300F385D3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4E060861F84463300F385D3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D403DFFE1F7074530083242E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D403DFFF1F7074530083242E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D403E0011F7074530083242E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Switchboard/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.Switchboard;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D403E0021F7074530083242E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Switchboard/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.Switchboard;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D403E0041F7074530083242E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwitchboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D403E0051F7074530083242E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SwitchboardTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4E060941F84463300F385D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				INFOPLIST_FILE = "$(SRCROOT)/SwitchboardExample/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4E060951F84463300F385D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				INFOPLIST_FILE = "$(SRCROOT)/SwitchboardExample/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4E060BA1F844D0D00F385D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				INFOPLIST_FILE = SwitchboardDebugUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardDebugUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwitchboardExample;
+			};
+			name = Debug;
+		};
+		D4E060BB1F844D0D00F385D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2RRZ76J46B;
+				INFOPLIST_FILE = SwitchboardDebugUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardDebugUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SwitchboardExample;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D403DFE61F7074530083242E /* Build configuration list for PBXProject "Switchboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D403DFFE1F7074530083242E /* Debug */,
+				D403DFFF1F7074530083242E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D403E0001F7074530083242E /* Build configuration list for PBXNativeTarget "Switchboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D403E0011F7074530083242E /* Debug */,
+				D403E0021F7074530083242E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D403E0031F7074530083242E /* Build configuration list for PBXNativeTarget "SwitchboardTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D403E0041F7074530083242E /* Debug */,
+				D403E0051F7074530083242E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4E060981F84463300F385D3 /* Build configuration list for PBXNativeTarget "SwitchboardExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4E060941F84463300F385D3 /* Debug */,
+				D4E060951F84463300F385D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4E060B91F844D0D00F385D3 /* Build configuration list for PBXNativeTarget "SwitchboardDebugUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4E060BA1F844D0D00F385D3 /* Debug */,
+				D4E060BB1F844D0D00F385D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D403DFE31F7074530083242E /* Project object */;
+}

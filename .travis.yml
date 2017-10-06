@@ -1,0 +1,13 @@
+language: objective-c
+osx_image: xcode9
+xcode_sdk: iphonesimulator11.0
+before_install:
+  - set -o pipefail
+  # Fix any travis xcodebuild exited with 65 issues by warming up the simulator
+  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 7 (11.0" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
+  - echo $IOS_SIMULATOR_UDID
+  - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
+script:
+- travis_retry xcodebuild -project Switchboard.xcodeproj -scheme Switchboard -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -enableCodeCoverage YES test | xcpretty --test
+- travis_retry xcodebuild -project Switchboard.xcodeproj -scheme SwitchboardExample -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -enableCodeCoverage YES test | xcpretty --test
+# - pod lib lint --allow-warnings
