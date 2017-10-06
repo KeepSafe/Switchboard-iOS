@@ -10,9 +10,11 @@ Simple A/B testing and feature flags for iOS built on top of [Switchboard](https
 
 ## Example Usage
 
-There is an example app under the `SwitchboardExample` target within the project file that you can run and see the debug user interface. It might be helpful in showing you our Switchboard setup recommendations.
+There is an example app under the `SwitchboardExample` target within the project file that you can run and see the debug user interface. This debug interface comes in handy when you want to test various flows within your app (e.g. enable `featureA` and verify the code does X, then disable `featureA` and verify the code does Y) or you want to put yourself into a given experiment cohort to see what that user experience will look like to others. 
 
-All UI tests are also run off of the example app.
+The example might also be helpful in showing you our Switchboard setup recommendations so you can more easily integrate the debug interface into your own app.
+
+![Switchboard Debug](https://user-images.githubusercontent.com/30269720/31296028-c2812356-aa95-11e7-83c8-336266f2497e.gif)
 
 ## Issues & Bugs
 Please use the [Github issue tracker](https://github.com/KeepSafe/Switchboard-iOS/issues) to let us know about any issues you may be experiencing.
