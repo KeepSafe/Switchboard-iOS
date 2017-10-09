@@ -44,6 +44,11 @@ fileprivate extension AppDelegate {
     }
 
     func activateSwitchboard() {
+//        // You can clear cache using
+//        SwitchboardCache.clear()
+//        // Debug has its own cache
+//        SwitchboardDebugController(switchboard: ExampleSwitchboard.shared).clearCacheAndSwitchboard()
+
         ExampleSwitchboard.shared.activate(serverUrlString: ExampleSwitchboard.serverUrlString) { error in
             if let error = error {
                 print("Error fetching experiments & features (but we might still have cached values): \(error.localizedDescription)")

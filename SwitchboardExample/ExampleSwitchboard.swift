@@ -47,7 +47,7 @@ final class ExampleSwitchboard: Switchboard {
 
         // For this example, we'll just set the active & inactive features ourselves, but
         // this is a similar order for what to do in your network success callback
-        if let json = defaultExperimentsAndFeatures() {
+        if let json = ExampleSwitchboard.defaultExperimentsAndFeatures() {
             // Active
             experiments = SwitchboardExperimentFactory.from(json: json, analytics: analytics)
             features = SwitchboardFeatureFactory.from(json: json, analytics: analytics)
@@ -113,18 +113,5 @@ fileprivate extension ExampleSwitchboard {
             return featureName == "somePreventedFeatureNameHere" // or other conditional logic
         }
     }
-
-    // MARK: - JSON Helpers
-
-    // Some networking libs return optionals for responses, so we do that here just to simulate it
-    func defaultExperimentsAndFeatures() -> [String: Any]? {
-        let defaults: [String: Any] = [
-            "activeExperiment1": ["isActive": true, "values": ["cohort": "123"]],
-            "inactiveExperiment1": ["isActive": false, "values": ["cohort": "456"]],
-            "activeFeature1": ["isActive": true, "values": ["someValue": "goes here"]],
-            "inactiveFeature1": ["isActive": false, "values": ["are you awesome": true]]
-            ]
-        return defaults
-    }
-
+    
 }
