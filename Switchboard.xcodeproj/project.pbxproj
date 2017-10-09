@@ -33,6 +33,9 @@
 		D42C110E1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */; };
 		D42C11181F8BDE3C00D13187 /* ActiveExperiment1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */; };
 		D42C111A1F8BDE8000D13187 /* ActiveFeature1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */; };
+		D454BDFC1F8BE6700015EFEE /* ExampleSwitchboard+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */; };
+		D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */; };
+		D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */; };
 		D4C0785B1F748B7600C585F0 /* TestAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */; };
 		D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */; };
 		D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607C1F84463300F385D3 /* AppDelegate.swift */; };
@@ -670,9 +673,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */,
+				D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */,
 				D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */,
 				D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */,
 				D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */,
+				D454BDFC1F8BE6700015EFEE /* ExampleSwitchboard+Example.swift in Sources */,
 				D42318941F846C6C00A66EDC /* MainViewController.swift in Sources */,
 				D4E060B51F844D0D00F385D3 /* SwitchboardDebugUITests.swift in Sources */,
 				D42318931F846C6C00A66EDC /* ExampleSwitchboardAnalytics.swift in Sources */,

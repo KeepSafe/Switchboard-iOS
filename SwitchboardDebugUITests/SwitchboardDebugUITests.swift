@@ -226,7 +226,7 @@ final class SwitchboardDebugUITests: XCTestCase {
         app.buttons["Start experiment"].tap()
         XCTAssertTrue(app.textFieldExists(containing: "New State: Started"))
         saveForm()
-        XCTAssertFalse(app.cellExists(containing: "started"))
+        XCTAssertFalse(app.cellExists(containing: "started ∙ cohort: yay")) // specifically, this experiment
     }
     
 }
