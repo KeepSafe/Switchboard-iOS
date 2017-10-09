@@ -30,6 +30,12 @@
 		D42937B31F7C5F12000D06D6 /* SwitchboardDebugFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */; };
 		D42937B41F7C5F12000D06D6 /* SwitchboardDebugListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */; };
 		D42938071F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42938061F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift */; };
+		D42C110E1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */; };
+		D42C11181F8BDE3C00D13187 /* ActiveExperiment1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */; };
+		D42C111A1F8BDE8000D13187 /* ActiveFeature1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */; };
+		D454BDFC1F8BE6700015EFEE /* ExampleSwitchboard+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */; };
+		D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */; };
+		D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */; };
 		D4C0785B1F748B7600C585F0 /* TestAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */; };
 		D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */; };
 		D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607C1F84463300F385D3 /* AppDelegate.swift */; };
@@ -131,6 +137,9 @@
 		D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugFeatureView.swift; sourceTree = "<group>"; };
 		D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugListView.swift; sourceTree = "<group>"; };
 		D42938061F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugButtonCell.swift; sourceTree = "<group>"; };
+		D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleSwitchboard+Example.swift"; sourceTree = "<group>"; };
+		D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExperiment1.swift; sourceTree = "<group>"; };
+		D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFeature1.swift; sourceTree = "<group>"; };
 		D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnalyticsProvider.swift; sourceTree = "<group>"; };
 		D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugControllerTests.swift; sourceTree = "<group>"; };
 		D4E0607A1F84463300F385D3 /* SwitchboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,6 +366,22 @@
 			path = Listing;
 			sourceTree = "<group>";
 		};
+		D42C11151F8BDDE800D13187 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		D42C11161F8BDDE800D13187 /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */,
+			);
+			path = Experiments;
+			sourceTree = "<group>";
+		};
 		D4C078591F748B6D00C585F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,8 +403,11 @@
 			children = (
 				D4E0607C1F84463300F385D3 /* AppDelegate.swift */,
 				D4E0609A1F84473600F385D3 /* ExampleSwitchboard.swift */,
+				D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */,
 				D4E060BC1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift */,
 				D4E0607E1F84463300F385D3 /* MainViewController.swift */,
+				D42C11161F8BDDE800D13187 /* Experiments */,
+				D42C11151F8BDDE800D13187 /* Features */,
 				D4E0609C1F84474800F385D3 /* Resources */,
 			);
 			path = SwitchboardExample;
@@ -631,10 +659,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42C11181F8BDE3C00D13187 /* ActiveExperiment1.swift in Sources */,
 				D4E0607F1F84463300F385D3 /* MainViewController.swift in Sources */,
 				D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */,
+				D42C111A1F8BDE8000D13187 /* ActiveFeature1.swift in Sources */,
 				D4E060BD1F844F7500F385D3 /* ExampleSwitchboardAnalytics.swift in Sources */,
 				D4E0609B1F84473600F385D3 /* ExampleSwitchboard.swift in Sources */,
+				D42C110E1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,9 +673,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */,
+				D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */,
 				D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */,
 				D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */,
 				D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */,
+				D454BDFC1F8BE6700015EFEE /* ExampleSwitchboard+Example.swift in Sources */,
 				D42318941F846C6C00A66EDC /* MainViewController.swift in Sources */,
 				D4E060B51F844D0D00F385D3 /* SwitchboardDebugUITests.swift in Sources */,
 				D42318931F846C6C00A66EDC /* ExampleSwitchboardAnalytics.swift in Sources */,

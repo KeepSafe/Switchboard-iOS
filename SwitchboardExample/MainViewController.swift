@@ -17,6 +17,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        printExampleUsageToConsole()
     }
 
     // MARK: - Private View Properties
@@ -42,6 +43,28 @@ final class MainViewController: UIViewController {
 // MARK: - Private API
 
 fileprivate extension MainViewController {
+
+    // MARK: - Example Usage
+
+    func printExampleUsageToConsole() {
+        print("--------------------------\n")
+        print("SWITCHBOARD EXAMPLE USAGE:\n")
+        print("--------------------------\n")
+        print("Is in activeExperiment1? \(ExampleSwitchboard.isIn(experiment: .activeExperiment1))\n")
+        print("Is not in inactiveExperiment1? \(ExampleSwitchboard.isNotIn(experiment: .inactiveExperiment1))\n")
+        print("Is enabled activeFeature1? \(ExampleSwitchboard.isEnabled(feature: .activeFeature1))\n")
+        print("Is not enabled inactiveFeature1? \(ExampleSwitchboard.isNotEnabled(feature: .inactiveFeature1))\n")
+
+        // Experiments and features should be treated like models and placed in their own subclasses for any
+        // extra properties or complex experiment or logging logic, then you can just cast to the concrete
+        // types like shown below
+        if let activeExperiment: ActiveExperiment1 = ExampleSwitchboard.experiment(named: .activeExperiment1) {
+            print("activeExperiment1 subclass value --> iLoveLamp: \(String(describing: activeExperiment.lovesLamp))\n")
+        }
+        if let activeFeature: ActiveFeature1 = ExampleSwitchboard.feature(named: .activeFeature1) {
+            print("activeFeature1 subclass value --> someValue: \(String(describing: activeFeature.someValue))\n")
+        }
+    }
 
     // MARK: - View Setup
 
