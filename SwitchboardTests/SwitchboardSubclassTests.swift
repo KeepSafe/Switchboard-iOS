@@ -18,7 +18,7 @@ final class TestSwitchboardSubclass: Switchboard {
         activateExpectation.fulfill()
     }
 
-    override func downloadConfiguration(for uuid: String, trackingId: String?, userData: [String : Any]?, completion: SwitchboardClientCompletion?) {
+    override func downloadConfiguration(for uuid: String, userData: [String : Any]?, completion: SwitchboardClientCompletion?) {
         downloadConfigurationExpectation.fulfill()
     }
 
@@ -39,7 +39,7 @@ final class SwitchboardSubclassTests: XCTestCase {
     }
 
     func testDownloadConfiguration() {
-        subclass.downloadConfiguration(for: "uuid", trackingId: nil, userData: nil, completion: nil)
+        subclass.downloadConfiguration(for: "uuid", userData: nil, completion: nil)
         wait(for: [subclass.downloadConfigurationExpectation], timeout: 5)
     }
 

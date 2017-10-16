@@ -206,10 +206,9 @@ open class Switchboard: SwitchboardClient {
     ///
     /// - Parameters:
     ///   - uuid: A unique user identifier
-    ///   - trackingId: Optional tracking identifier
     ///   - userData: Optional user data which should be merged into the request parameters
     ///   - completion: Optional closure called upon completion
-    open func downloadConfiguration(for uuid: String, trackingId: String?, userData: [String : Any]?, completion: SwitchboardClientCompletion?) {
+    open func downloadConfiguration(for uuid: String, userData: [String : Any]?, completion: SwitchboardClientCompletion?) {
         fatalError("override necessary")
         
         // Implement networking code here to make a request to your Switchboard server instance.

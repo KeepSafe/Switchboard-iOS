@@ -12,8 +12,9 @@ import XCTest
 final class SwitchboardPropertiesTests: XCTestCase {
 
     func testDefaultProperties() {
-        let defaults = SwitchboardProperties.defaults
+        let defaults = SwitchboardProperties.defaults(withUuid: "abcd")
         XCTAssertNotNil(defaults)
+        XCTAssertEqual(defaults[SwitchboardPropertyKeys.uuid] as? String, "abcd")
         XCTAssertNotNil(defaults[SwitchboardPropertyKeys.osMajorVersion])
         XCTAssertNotNil(defaults[SwitchboardPropertyKeys.osVersion])
         XCTAssertNotNil(defaults[SwitchboardPropertyKeys.device])

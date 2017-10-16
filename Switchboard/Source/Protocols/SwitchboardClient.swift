@@ -22,7 +22,7 @@ public protocol SwitchboardClient {
 
     func activate(serverUrlString: String, completion: SwitchboardClientCompletion?)
 
-    func downloadConfiguration(for uuid: String, trackingId: String?, userData: [String: Any]?, completion: SwitchboardClientCompletion?)
+    func downloadConfiguration(for uuid: String, userData: [String: Any]?, completion: SwitchboardClientCompletion?)
 
     func isIn(experimentNamed experimentName: String, defaultValue: Bool) -> Bool
 

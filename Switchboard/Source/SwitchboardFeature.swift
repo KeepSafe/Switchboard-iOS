@@ -26,11 +26,7 @@ open class SwitchboardFeatureFactory {
             guard let dictionary = json[key] as? [String: Any] else { continue }
 
             let isActive = dictionary[SwitchboardKeys.isActive] as? Bool
-            if active {
-                guard isActive == true else { continue }
-            } else {
-                guard isActive == false else { continue }
-            }
+            guard isActive == active else { continue }
 
             let values = dictionary[SwitchboardKeys.values] as? [String: Any]
             if let instance = SwitchboardFeature(name: key, values: values, analytics: analytics) {

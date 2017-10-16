@@ -9,23 +9,25 @@
 import Foundation
 
 public struct SwitchboardPropertyKeys {
-    static let osMajorVersion = "os_major_version"
-    static let osVersion = "os_version"
-    static let device = "device"
-    static let lang = "lang"
-    static let manufacturer = "manufacturer"
-    static let country = "country"
-    static let appId = "appId"
-    static let version = "version"
-    static let build = "build"
+    public static let osMajorVersion = "os_major_version"
+    public static let osVersion = "os_version"
+    public static let device = "device"
+    public static let lang = "lang"
+    public static let manufacturer = "manufacturer"
+    public static let country = "country"
+    public static let appId = "appId"
+    public static let version = "version"
+    public static let build = "build"
+    public static let uuid = "uuid"
 }
 
 open class SwitchboardProperties {
 
     // MARK: - Public Properties
 
-    open static var defaults: [String: Any] {
+    open static func defaults(withUuid uuid: String) -> [String: Any] {
         let parameters: [String: Any] = [
+            SwitchboardPropertyKeys.uuid: uuid,
             SwitchboardPropertyKeys.osMajorVersion: ProcessInfo().operatingSystemVersion.majorVersion,
             SwitchboardPropertyKeys.osVersion: UIDevice.current.systemVersion,
             SwitchboardPropertyKeys.device: UIDevice.current.model,
