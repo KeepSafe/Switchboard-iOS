@@ -22,13 +22,12 @@ final class ExampleSwitchboard: Switchboard {
 
     override func activate(serverUrlString: String, completion: SwitchboardClientCompletion?) {
         // You should save the serverUrlString locally and use it in the download config method
-        
-        let trackingId = "abc123"
+
         let uuid = "uid456"
-        downloadConfiguration(for: uuid, trackingId: trackingId, completion: completion)
+        downloadConfiguration(for: uuid, completion: completion)
     }
 
-    override func downloadConfiguration(for uuid: String, trackingId: String?, userData: [String : Any]? = nil, completion: SwitchboardClientCompletion?) {
+    override func downloadConfiguration(for uuid: String, userData: [String : Any]? = nil, completion: SwitchboardClientCompletion?) {
         // If we're debugging, just let it use the debugging cache
         guard isDebugging == false else {
             completion?(nil)
@@ -38,7 +37,7 @@ final class ExampleSwitchboard: Switchboard {
         // Otherwise, fetch from the server
 
         // If you need to join the default parameters with the user data, just use something like
-//        var parameters = SwitchboardProperties.defaults
+//        var parameters = SwitchboardProperties.defaults(withUuid: uuid)
 //        if let userData = userData {
 //            for (key, value) in userData {
 //                parameters[key] = value

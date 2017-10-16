@@ -31,11 +31,7 @@ open class SwitchboardExperimentFactory {
                 else { continue }
 
             let isActive = dictionary[SwitchboardKeys.isActive] as? Bool
-            if active {
-                guard isActive == true else { continue }
-            } else {
-                guard isActive == false else { continue }
-            }
+            guard isActive == active else { continue }
 
             instances.insert(instance)
         }
