@@ -6,10 +6,16 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import Foundation
 
 fileprivate final class SwitchboardDebugCache: SwitchboardCache {
     override class var cacheDirectoryName: String { return "switchboardDebug" }
+}
+
+public struct SwitchboardDebugCacheKeys {
+    public static let activeKey = "active"
+    public static let inactiveKey = "inactive"
 }
 
 open class SwitchboardDebugController {
@@ -20,15 +26,16 @@ open class SwitchboardDebugController {
     /// the server's features and experiments
     ///
     /// - Parameter switchboard: An instance of the `Switchboard` class
-    public init(switchboard: Switchboard) {
+    /// - Parameter analytics: An optional analytics provider conforming to `SwitchboardAnalyticsProvider`
+    public init(switchboard: Switchboard, analytics: SwitchboardAnalyticsProvider? = nil) {
         self.switchboard = switchboard
-
-        restoreFromCacheIfNecessary()
+        self.analytics = analytics
     }
 
     // MARK: - Public Properties
 
     public let switchboard: Switchboard
+    public let analytics: SwitchboardAnalyticsProvider?
 
     open var activeFeatures: [SwitchboardFeature] {
         return Array(switchboard.features)
@@ -48,15 +55,43 @@ open class SwitchboardDebugController {
 
     // MARK: - Caching
 
+    open class func restoreDebugCache(switchboard: Switchboard, analytics: SwitchboardAnalyticsProvider?) {
+        guard switchboard.isDebugging else { return }
+
+        let (activeExperiments, activeFeatures) = SwitchboardDebugCache.restoreFromCache(namespace: SwitchboardDebugCacheKeys.activeKey)
+        let (inactiveExperiments, inactiveFeatures) = SwitchboardDebugCache.restoreFromCache(namespace: SwitchboardDebugCacheKeys.inactiveKey)
+
+        func restore(experiments: Set<SwitchboardExperiment>) -> Set<SwitchboardExperiment> {
+            return Set(experiments.flatMap({ SwitchboardExperiment(name: $0.name, values: $0.values, availableCohorts: $0.availableCohorts, switchboard: switchboard, analytics: analytics) }))
+        }
+
+        func restore(features: Set<SwitchboardFeature>) -> Set<SwitchboardFeature> {
+            return Set(features.flatMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: analytics) }))
+        }
+
+        if let activeExperiments = activeExperiments {
+            switchboard.experiments = restore(experiments: activeExperiments)
+        }
+        if let inactiveExperiments = inactiveExperiments {
+            switchboard.inactiveExperiments = restore(experiments: inactiveExperiments)
+        }
+        if let activeFeatures = activeFeatures {
+            switchboard.features = restore(features: activeFeatures)
+        }
+        if let inactiveFeatures = inactiveFeatures {
+            switchboard.inactiveFeatures = restore(features: inactiveFeatures)
+        }
+    }
+
     open func cacheAll() {
-        SwitchboardDebugCache.cache(experiments: Set(activeExperiments), features: Set(activeFeatures), namespace: activeKey)
-        SwitchboardDebugCache.cache(experiments: Set(inactiveExperiments), features: Set(inactiveFeatures), namespace: inactiveKey)
+        SwitchboardDebugCache.cache(experiments: Set(activeExperiments), features: Set(activeFeatures), namespace: SwitchboardDebugCacheKeys.activeKey)
+        SwitchboardDebugCache.cache(experiments: Set(inactiveExperiments), features: Set(inactiveFeatures), namespace: SwitchboardDebugCacheKeys.inactiveKey)
         switchboard.isDebugging = true
     }
 
     open func clearCacheAndSwitchboard() {
-        SwitchboardDebugCache.clear(namespace: activeKey)
-        SwitchboardDebugCache.clear(namespace: inactiveKey)
+        SwitchboardDebugCache.clear(namespace: SwitchboardDebugCacheKeys.activeKey)
+        SwitchboardDebugCache.clear(namespace: SwitchboardDebugCacheKeys.inactiveKey)
         switchboard.experiments.removeAll()
         switchboard.inactiveExperiments.removeAll()
         switchboard.features.removeAll()
@@ -117,6 +152,7 @@ open class SwitchboardDebugController {
     }
 
     open func delete(experiment: SwitchboardExperiment) {
+        experiment.clearState() // Clear any stored state in case we add this again later
         switchboard.experiments.remove(experiment)
         switchboard.inactiveExperiments.remove(experiment)
     }
@@ -132,10 +168,6 @@ open class SwitchboardDebugController {
         activate(experiment: experiment)
     }
 
-    open func change(cohort: String, experiment: SwitchboardExperiment) {
-        experiment.values[SwitchboardKeys.cohort] = cohort
-    }
-
     open func change(values: [String: Any], for experiment: SwitchboardExperiment) {
         experiment.values = values
     }
@@ -144,34 +176,5 @@ open class SwitchboardDebugController {
         experiment.availableCohorts = availableCohorts
     }
 
-    // MARK: - Private Properties
-
-    fileprivate let activeKey = "active"
-    fileprivate let inactiveKey = "inactive"
-
 }
-
-// MARK: - Private API
-
-fileprivate extension SwitchboardDebugController {
-
-    func restoreFromCacheIfNecessary() {
-        guard switchboard.isDebugging else { return }
-
-        let (activeExperiments, activeFeatures) = SwitchboardDebugCache.restoreFromCache(namespace: activeKey)
-        let (inactiveExperiments, inactiveFeatures) = SwitchboardDebugCache.restoreFromCache(namespace: inactiveKey)
-        if let activeExperiments = activeExperiments {
-            switchboard.experiments = activeExperiments
-        }
-        if let inactiveExperiments = inactiveExperiments {
-            switchboard.inactiveExperiments = inactiveExperiments
-        }
-        if let activeFeatures = activeFeatures {
-            switchboard.features = activeFeatures
-        }
-        if let inactiveFeatures = inactiveFeatures {
-            switchboard.inactiveFeatures = inactiveFeatures
-        }
-    }
-
-}
+#endif

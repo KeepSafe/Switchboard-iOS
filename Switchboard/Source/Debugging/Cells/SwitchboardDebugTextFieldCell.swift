@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugTextFieldCell: UITableViewCell {
@@ -78,3 +79,4 @@ fileprivate extension SwitchboardDebugTextFieldCell {
     }
 
 }
+#endif

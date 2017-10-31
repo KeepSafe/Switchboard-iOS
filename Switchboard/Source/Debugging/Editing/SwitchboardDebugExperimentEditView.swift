@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// Note: this class is transactional, so all changes are temporary until the Save button is pressed
@@ -233,6 +234,11 @@ fileprivate extension SwitchboardDebugExperimentEditView {
     }
 
     func setupInitiallyAvailableCohorts() {
+        // Setup any pre-populated values based on this experiment's name
+        for (experimentName, cohorts) in SwitchboardExperiment.namesMappedToCohorts where experiment?.name == experimentName {
+            cohorts.forEach({ createTappableCohort(named: $0) })
+        }
+        // Also restore any cached values
         experiment?.availableCohorts.forEach({ createTappableCohort(named: $0) })
 
         if let currentCohort = experiment?.cohort {
@@ -325,3 +331,4 @@ fileprivate extension SwitchboardDebugExperimentEditView {
     }
 
 }
+#endif

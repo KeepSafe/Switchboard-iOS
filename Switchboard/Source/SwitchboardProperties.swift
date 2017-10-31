@@ -6,7 +6,11 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
+import UIKit
+#else
 import Foundation
+#endif
 
 public struct SwitchboardPropertyKeys {
     public static let osMajorVersion = "os_major_version"
@@ -29,8 +33,8 @@ open class SwitchboardProperties {
         let parameters: [String: Any] = [
             SwitchboardPropertyKeys.uuid: uuid,
             SwitchboardPropertyKeys.osMajorVersion: ProcessInfo().operatingSystemVersion.majorVersion,
-            SwitchboardPropertyKeys.osVersion: UIDevice.current.systemVersion,
-            SwitchboardPropertyKeys.device: UIDevice.current.model,
+            SwitchboardPropertyKeys.osVersion: osVersion,
+            SwitchboardPropertyKeys.device: device,
             SwitchboardPropertyKeys.lang: Locale.preferredLanguages[0],
             SwitchboardPropertyKeys.manufacturer: "Apple",
             SwitchboardPropertyKeys.country: Locale.current.regionCode ?? unknown,
@@ -47,6 +51,28 @@ open class SwitchboardProperties {
     fileprivate static var buildName: String { return bundleValue(for: "CFBundleVersion") }
     fileprivate static var bundleIdentifier: String { return bundleValue(for: "CFBundleIdentifier") }
     fileprivate static let unknown = "unknown"
+    fileprivate static var osVersion: String {
+        #if os(iOS)
+            return UIDevice.current.systemVersion
+        #elseif os(macOS)
+            return ProcessInfo.processInfo.operatingSystemVersionString
+        #else
+            return unknown
+        #endif
+    }
+    fileprivate static var device: String {
+        #if os(iOS)
+            return UIDevice.current.model
+        #elseif os(macOS)
+            var size = 0
+            sysctlbyname("hw.model", nil, &size, nil, 0)
+            var machine = [CChar](repeating: 0,  count: size)
+            sysctlbyname("hw.model", &machine, &size, nil, 0)
+            return String(cString: machine)
+        #else
+            return unknown
+        #endif
+    }
 
 }
 

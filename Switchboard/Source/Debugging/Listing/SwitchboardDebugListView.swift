@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 internal enum SwitchboardDebugListSection {
@@ -71,3 +72,4 @@ internal class SwitchboardDebugListView: UITableViewController {
     required public init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 }
+#endif

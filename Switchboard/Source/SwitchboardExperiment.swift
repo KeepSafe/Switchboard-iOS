@@ -43,6 +43,16 @@ open class SwitchboardExperimentFactory {
 /// Base class to encapsulate experiment meta data and state
 open class SwitchboardExperiment: NSObject, SwitchboardValue {
 
+    // MARK: - Static Cohort Store
+
+    /// In-memory store used to map experiment names to any cohorts that should be
+    /// pre-populated and made available in the debug menu based on the experiment name.
+    ///
+    /// E.g. if you created an experiment called `myGreatExperiment` and wanted the debug
+    /// menu to always show a certain set of cohorts to select from for an experiment with that
+    /// name, you can do so by adding the experiment and cohorts to this map.
+    public static var namesMappedToCohorts = [String: [String]]()
+
     // MARK: - Instantiation
 
     /// Instantiates an experiment that the person currently belongs to
@@ -52,10 +62,11 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
     /// - Parameters:
     ///   - name: The name of the experiment
     ///   - values: A dictionary of associated values
+    ///   - availableCohorts: An optional list of cohorts that are selectable in the debug menu
     ///   - switchboard: An optional instance of `Switchboard` to check prevent execution logic against
     ///   - store: The key-value store, conforming to `SwitchboardStorable`, to save state into; defaults to using `SwitchboardDefaultStore`
     ///   - analytics: An optional analytics provider, conforming to `SwitchboardAnalyticsProvider`, to log events to
-    public required init?(name: String, values: [String: Any], switchboard: Switchboard? = nil, store: SwitchboardStorable = SwitchboardDefaultStore(), analytics: SwitchboardAnalyticsProvider? = nil) {
+    public required init?(name: String, values: [String: Any], availableCohorts: [String]? = nil, switchboard: Switchboard? = nil, store: SwitchboardStorable = SwitchboardDefaultStore(), analytics: SwitchboardAnalyticsProvider? = nil) {
         self.name = name
         // Experiments must be part of a cohort
         guard let _ = values[SwitchboardKeys.cohort] as? String else {
@@ -63,6 +74,9 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
         }
         self.switchboard = switchboard
         self.values = values
+        if let cohorts = availableCohorts {
+            self.availableCohorts = cohorts
+        }
         self.store = store
         self.analytics = analytics
     }
@@ -133,6 +147,13 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
 
     // MARK: - API
 
+    /// Abstract function, typically used during debug, that should be overridden with
+    /// code that will populate the cohorts that are available for this type of experiment
+    open class func populateAvailableCohorts() {
+        // Example:
+        // SwitchboardExperiment.namesMappedToCohorts["myGreatExperiment"] = ["control", "cohort1", "cohort2"]
+    }
+
     /// Clears the current state of this experiment (useful for debugging)
     open func clearState() {
         store.save(bool: false, for: self, forKey: SwitchboardKeys.isStarted)
@@ -178,7 +199,7 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
     /// - Parameters:
     ///   - event: A `String` event to track
     ///   - properties: A dictionary of optional properties
-    func track(event: String, properties: [String : Any]? = nil) {
+    open func track(event: String, properties: [String : Any]? = nil) {
         if shouldTrackAnalytics {
             analytics?.track(event: event, for: self, properties: properties)
         }
@@ -210,11 +231,8 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
               let values = aDecoder.decodeObject(forKey: SwitchboardNSCodingKeys.values) as? [String: Any]
             else { return nil }
 
-        self.init(name: name, values: values)
-
-        if let cohorts = aDecoder.decodeObject(forKey: SwitchboardNSCodingKeys.availableCohorts) as? [String] {
-            availableCohorts = cohorts
-        }
+        let cohorts = aDecoder.decodeObject(forKey: SwitchboardNSCodingKeys.availableCohorts) as? [String]
+        self.init(name: name, values: values, availableCohorts: cohorts)
     }
 
     open func encode(with aCoder: NSCoder) {

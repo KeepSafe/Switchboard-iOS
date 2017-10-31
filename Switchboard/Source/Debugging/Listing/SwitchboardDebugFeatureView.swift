@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugFeatureView: SwitchboardDebugListView {
@@ -83,7 +84,7 @@ fileprivate extension SwitchboardDebugFeatureView {
                   let textField = alertController?.textFields?.first,
                   let featureName = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                   featureName.isEmpty == false,
-                  let feature = SwitchboardFeature(name: featureName),
+                  let feature = SwitchboardFeature(name: featureName, analytics: strongSelf.debugController?.analytics),
                   strongSelf.debugController?.exists(feature: feature) == false
             else { return }
 
@@ -119,3 +120,4 @@ fileprivate extension SwitchboardDebugFeatureView {
     }
 
 }
+#endif

@@ -90,7 +90,13 @@ fileprivate extension MainViewController {
     // MARK: - Actions
 
     @objc func showDebugVC() {
-        switchboardDebugView = SwitchboardDebugView(switchboard: ExampleSwitchboard.shared)
+        switchboardDebugView = SwitchboardDebugView(switchboard: ExampleSwitchboard.shared,
+                                                    analytics: ExampleSwitchboard.shared.analytics,
+                                                    setupHandler: {
+                                                        // Do any optional setup here, like pre-populating available
+                                                        // cohorts so you can easily switch between them without typing them in
+                                                        AvailableCohortExperiment.populateAvailableCohorts()
+                                                    })
         switchboardDebugView?.refreshHandler = { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.confirmSwitchboardRefresh()

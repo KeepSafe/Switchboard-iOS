@@ -114,6 +114,16 @@ final class SwitchboardDebugUITests: XCTestCase {
         tapCancel()
     }
 
+    func testPrepopulatingAvailableCohorts() {
+        addExperiment(named: "availableCohortExperiment", cohort: "yay")
+        showExperimentDetail(for: "availableCohortExperiment")
+        XCTAssertTrue(app.cellExists(containing: "control"))
+        XCTAssertTrue(app.cellExists(containing: "cohort1"))
+        XCTAssertTrue(app.cellExists(containing: "cohort2"))
+        XCTAssertTrue(app.cellExists(containing: "yay"))
+        tapCancel()
+    }
+
     func testAddingExperiment() {
         addExperiment(named: "newExperiment", cohort: "yay")
         XCTAssertTrue(app.cellExists(containing: "newExperiment"))

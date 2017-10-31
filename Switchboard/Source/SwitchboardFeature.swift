@@ -84,7 +84,7 @@ open class SwitchboardFeature: NSObject, SwitchboardValue {
     /// - Parameters:
     ///   - event: A `String` event to track
     ///   - properties: A dictionary of optional properties
-    func track(event: String, properties: [String : Any]? = nil) {
+    open func track(event: String, properties: [String : Any]? = nil) {
         if shouldTrackAnalytics {
             analytics?.track(event: event, for: self, properties: properties)
         }
