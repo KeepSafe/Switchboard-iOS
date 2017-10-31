@@ -18,6 +18,10 @@ final class ExampleSwitchboard: Switchboard {
 
     static let shared = ExampleSwitchboard()
 
+    // MARK: - Properties
+
+    let analytics = ExampleSwitchboardAnalytics()
+
     // MARK: - Activating
 
     override func activate(serverUrlString: String, completion: SwitchboardClientCompletion?) {
@@ -71,10 +75,6 @@ final class ExampleSwitchboard: Switchboard {
         completion?(nil)
     }
 
-    // MARK: - Private Properties
-
-    fileprivate let analytics = ExampleSwitchboardAnalytics()
-
     // MARK: - Private Instantiation
 
     fileprivate override init() {
@@ -93,9 +93,20 @@ fileprivate extension ExampleSwitchboard {
     // MARK: - Cache
 
     func restoreFromCache() {
+        // Check if we should use debug cache
+        guard self.isDebugging == false else {
+            SwitchboardDebugController.restoreDebugCache(switchboard: self, analytics: self.analytics)
+            return
+        }
+
+        // Otherwise, use the non-debug cache and pass in the Switchboard and analytics provider where needed
         let (experiments, features) = SwitchboardCache.restoreFromCache()
-        if let experiments = experiments { self.experiments = experiments }
-        if let features = features { self.features = features }
+        if let experiments = experiments {
+            self.experiments = Set(experiments.flatMap({ SwitchboardExperiment(name: $0.name, values: $0.values, switchboard: self, analytics: self.analytics) }))
+        }
+        if let features = features {
+            self.features = Set(features.flatMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: self.analytics) }))
+        }
     }
 
     // MARK: - Prevention Logic

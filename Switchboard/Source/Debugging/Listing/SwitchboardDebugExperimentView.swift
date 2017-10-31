@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
@@ -88,7 +89,8 @@ fileprivate extension SwitchboardDebugExperimentView {
                   experimentName.isEmpty == false,
                   cohortName.isEmpty == false,
                   let switchboard = strongSelf.debugController?.switchboard,
-                  let experiment = SwitchboardExperiment(name: experimentName, cohort: cohortName, switchboard: switchboard),
+                  let experiment = SwitchboardExperiment(name: experimentName, cohort: cohortName,
+                                                         switchboard: switchboard, analytics: strongSelf.debugController?.analytics),
                   strongSelf.debugController?.exists(experiment: experiment) == false
                 else { return }
 
@@ -140,3 +142,4 @@ fileprivate extension SwitchboardDebugExperimentView {
     }
 
 }
+#endif

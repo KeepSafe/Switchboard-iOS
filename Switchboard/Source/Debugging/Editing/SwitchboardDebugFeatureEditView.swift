@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 /// Note: this class is transactional, so all changes are temporary until the Save button is pressed
@@ -76,3 +77,4 @@ final internal class SwitchboardDebugFeatureEditView: SwitchboardDebugEditView {
     override init(feature: SwitchboardFeature?, experiment: SwitchboardExperiment?, debugController: SwitchboardDebugController, refreshHandler: @escaping SwitchboardDebugEditShouldRefresh) { fatalError("use init(feature:debugController:refreshHandler:) instead") }
 
 }
+#endif

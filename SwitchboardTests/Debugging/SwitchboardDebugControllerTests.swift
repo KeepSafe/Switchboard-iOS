@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import XCTest
 @testable import Switchboard
 
@@ -113,15 +114,6 @@ final class SwitchboardDebugControllerTests: XCTestCase {
         XCTAssertFalse(debugController.exists(experiment: experiment))
     }
 
-    func testChangeExperimentCohort() {
-        let switchboard = Switchboard()
-        let experiment = SwitchboardExperiment(name: "experiment", cohort: "hai", switchboard: switchboard)!
-        let debugController = SwitchboardDebugController(switchboard: switchboard)
-        XCTAssertTrue(experiment.cohort == "hai")
-        debugController.change(cohort: "there", experiment: experiment)
-        XCTAssertTrue(experiment.cohort == "there")
-    }
-
     func testChangeExperimentValues() {
         let switchboard = Switchboard()
         let experiment = SwitchboardExperiment(name: "experiment", cohort: "hai", switchboard: switchboard)!
@@ -196,3 +188,4 @@ final class SwitchboardDebugControllerTests: XCTestCase {
     }
 
 }
+#endif

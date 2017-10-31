@@ -6,7 +6,11 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if (TARGET_OS_IPHONE)
 #import <UIKit/UIKit.h>
+#endif
+
+#import <Foundation/Foundation.h>
 
 //! Project version number for Switchboard.
 FOUNDATION_EXPORT double SwitchboardVersionNumber;

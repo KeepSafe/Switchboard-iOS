@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 typealias SwitchboardDebugEditShouldRefresh = () -> ()
@@ -256,3 +257,5 @@ fileprivate extension SwitchboardDebugEditView {
     }
 
 }
+#endif
+

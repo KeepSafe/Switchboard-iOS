@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import Foundation
 
 /// Note: Types are derived from the class type (e.g. toggle, text field, etc)
@@ -117,3 +118,4 @@ final internal class SwitchboardButtonSetting: SwitchboardTappableSetting {
     var enabled: Bool = true
 
 }
+#endif

@@ -6,8 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
-import Foundation
-
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugTextViewCell: UITableViewCell {
@@ -81,3 +80,4 @@ fileprivate extension SwitchboardDebugTextViewCell {
     }
 
 }
+#endif

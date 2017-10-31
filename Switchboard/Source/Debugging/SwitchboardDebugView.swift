@@ -6,25 +6,34 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
-public typealias SwitchboardDebugRefreshHandler = () -> ()
+public typealias SwitchboardDebugHandler = () -> ()
 
 open class SwitchboardDebugView: UITableViewController {
 
     // MARK: - Instantiation
 
-    public init(switchboard: Switchboard) {
+    /// Creates a new Switchboard debug view
+    ///
+    /// - Parameters:
+    ///   - switchboard: The `Switchboard` instance
+    ///   - analytics: An optional analytics provider conforming to `SwitchboardAnalyticsProvider`
+    ///   - setupHandler: An optional setup closure where you can populate debug information, such as available cohorts
+    public init(switchboard: Switchboard, analytics: SwitchboardAnalyticsProvider?, setupHandler: SwitchboardDebugHandler? = nil) {
         self.switchboard = switchboard
+        self.analytics = analytics
 
         super.init(style: .plain)
 
         setupView()
+        setupHandler?()
     }
 
     // MARK: - Properties
 
-    public var refreshHandler: SwitchboardDebugRefreshHandler?
+    public var refreshHandler: SwitchboardDebugHandler?
 
     // MARK: - API
 
@@ -78,9 +87,10 @@ open class SwitchboardDebugView: UITableViewController {
     }
 
     fileprivate let switchboard: Switchboard
+    fileprivate let analytics: SwitchboardAnalyticsProvider?
 
     fileprivate lazy var debugController: SwitchboardDebugController = { [unowned self] in
-        return SwitchboardDebugController(switchboard: self.switchboard)
+        return SwitchboardDebugController(switchboard: self.switchboard, analytics: self.analytics)
     }()
 
     fileprivate lazy var refresh: UIRefreshControl = { [unowned self] in
@@ -134,4 +144,5 @@ fileprivate extension SwitchboardDebugView {
     }
 
 }
+#endif
 

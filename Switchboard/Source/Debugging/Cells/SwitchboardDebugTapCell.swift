@@ -6,6 +6,7 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugTapCell: UITableViewCell {
@@ -46,3 +47,4 @@ final internal class SwitchboardDebugTapCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
 }
+#endif
