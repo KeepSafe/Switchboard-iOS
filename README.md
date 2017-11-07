@@ -1,12 +1,13 @@
-# Switchboard for iOS
+# Switchboard for iOS & macOS
 
 [![Build Status](https://travis-ci.com/KeepSafe/Switchboard-iOS.svg?token=FkPqyrwwnAY4pErzdxwy&branch=master)](https://travis-ci.com/KeepSafe/Switchboard-iOS)
 [![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Switchboard.svg?maxAge=2592000)]()
 [![Swift 3](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
+[![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 
-Simple A/B testing and feature flags for iOS built on top of [Switchboard](https://github.com/KeepSafe/Switchboard).
+Simple A/B testing and feature flags for iOS & macOS built on top of [Switchboard](https://github.com/KeepSafe/Switchboard).
 
 ## What it does
 
@@ -58,7 +59,7 @@ The example might also be helpful in showing you our Switchboard setup recommend
 3. Select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the `Targets` heading in the sidebar.
 4. In the tab bar at the top of that window, open the `General` panel.
 5. Click on the `+` button under the `Embedded Binaries` section.
-6. Search for and select the top `Switchboard.framework` for iOS.
+6. Search for and select the top `Switchboard.framework` for iOS or macOS.
 
 And that's it!
 
@@ -69,11 +70,11 @@ Please use the [Github issue tracker](https://github.com/KeepSafe/Switchboard-iO
 
 ## License
 
-Switchboard for iOS is licensed under the [Apache Software License, 2.0 ("Apache 2.0")](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
+Switchboard for iOS / macOS is licensed under the [Apache Software License, 2.0 ("Apache 2.0")](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
 
 ## Authors
 
-Switchboard for iOS is brought to you by [Rob Phillips](https://github.com/iwasrobbed) and the rest of the [Keepsafe team](https://www.getkeepsafe.com/about.html). We'd love to have you contribute or [join us](https://www.getkeepsafe.com/careers.html).
+Switchboard for iOS / macOS is brought to you by [Rob Phillips](https://github.com/iwasrobbed) and the rest of the [Keepsafe team](https://www.getkeepsafe.com/about.html). We'd love to have you contribute or [join us](https://www.getkeepsafe.com/careers.html).
 
 ## Used in production by
 
