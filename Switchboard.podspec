@@ -7,6 +7,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { "Keepsafe" => "philipp@getkeepsafe.com" }
   spec.source       = { :git => "https://github.com/KeepSafe/Switchboard-iOS.git", :tag => "v" + spec.version.to_s }
   spec.source_files = "Switchboard/Source/**/*"
-  spec.platform		= :ios, "10.0"
+  spec.ios.deployment_target = "10.0"
+  spec.osx.deployment_target = "10.12"
   spec.requires_arc = true
 end
