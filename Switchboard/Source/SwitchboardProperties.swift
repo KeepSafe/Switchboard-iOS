@@ -35,7 +35,7 @@ open class SwitchboardProperties {
             SwitchboardPropertyKeys.osMajorVersion: ProcessInfo().operatingSystemVersion.majorVersion,
             SwitchboardPropertyKeys.osVersion: osVersion,
             SwitchboardPropertyKeys.device: device,
-            SwitchboardPropertyKeys.lang: Locale.preferredLanguages[0],
+            SwitchboardPropertyKeys.lang: Bundle.main.preferredLocalizations.first!, // This is the language ID for the actual localization of the app, not necessarily the language setting of the device
             SwitchboardPropertyKeys.manufacturer: "Apple",
             SwitchboardPropertyKeys.country: Locale.current.regionCode ?? unknown,
             SwitchboardPropertyKeys.appId: bundleIdentifier,
