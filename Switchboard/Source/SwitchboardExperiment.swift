@@ -205,15 +205,6 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
         }
     }
 
-    /// Given an event logged by the main app analytics return true to also track on the experiment
-    ///
-    /// - Parameters:
-    ///   - event: The `String` logged by the app
-    ///   - properties: A dictionary of optional properties
-    open func shouldDoubleTrack(event: String, properties: [String : Any]? = nil) -> Bool {
-        return false
-    }
-
     /// Adds a dependency that must be completed prior to this experiment starting
     ///
     /// - Parameter dependency: The `SwitchboardExperiment` this experiment depends on
