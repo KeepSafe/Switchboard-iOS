@@ -51,6 +51,114 @@ The example might also be helpful in showing you our Switchboard setup recommend
 
 ![Switchboard Debug](https://user-images.githubusercontent.com/30269720/31296028-c2812356-aa95-11e7-83c8-336266f2497e.gif)
 
+## General Info & Usage
+
+Note: We'll use the code in the [example app](https://github.com/KeepSafe/Switchboard-iOS/blob/master/SwitchboardExample) to walk through scenarios here.
+
+### Experiments vs. Features
+
+An **experiment** has at least one `cohort` of people that are within it, so think of it as an A/B test that we temporarily run in order to determine the best behavior we need for revenue goals, etc. If one of the experiments are successful, we'll delete the experiment itself and likely add its code behind a feature flag or more permanently to the codebase. 
+
+A **feature** is exactly that: a feature that is either enabled or disabled for people. We can create feature flags to disable certain features (i.e. if we're experiencing lots of crashes in a given feature) or to expose new functionality without deploying.
+
+### Creating an experiment
+
+Add a new enum case to `ExampleSwitchboardExperiment ` within `ExampleSwitchboard+Example` with the name of the experiment.
+
+You can now do things like:
+
+```swift
+if ExampleSwitchboard.isIn(experiment: .myExperiment) { }
+// Or
+if ExampleSwitchboard.isNotIn(experiment: .myExperiment) {}
+```
+
+If you're accessing keys within the `values` dictionary or have other complex logic that should be encapsulated nicely with this new experiment, create a subclass of `SwitchboardExperiment`.
+
+You can now do things like:
+
+```swift
+// Note: you must cast to `MyExperiment` like shown below so it'll return the concrete type
+let myExperiment: MyExperiment = ExampleSwitchboard.experiment(named: .myExperiment)
+print(myExperiment.cohort)
+print(myExperiment.values)
+myExperiment.start()
+myExperiment.complete()
+// and there are lots of other helper properties and 
+// functions viewable in SwitchboardExperiment
+
+// Or do custom things
+myExperiment.doSomeCustomLogicThing()
+myExperiment.track(event: "somethingGreat", properties: ["wow": "magic"])
+
+// Or you can even add experiment dependencies which prevent your experiment 
+// from starting until the other experiments have been completed
+myExperiment.add(dependency: someOtherExperiment)
+```
+
+If you want your cohort values to show up in the Switchboard debugging view, you can override the `availableCohorts` array in your `SwitchboardExperiment` subclass and provide the cohort strings. This will allow you to easily switch between cohorts in debugging mode and test the various UX flows.
+
+### Creating a feature
+
+Add a new enum case to `ExampleSwitchboardFeature` within `ExampleSwitchboard+Example` with the name of the feature.
+
+You can now do things like:
+
+```swift
+if ExampleSwitchboard.isEnabled(feature: .myFeature) { }
+// Or
+if ExampleSwitchboard.isNotEnabled(feature: .myFeature) {}
+```
+
+If you're accessing keys within the `values` dictionary or have other complex logic that should be encapsulated nicely with this new feature, create a subclass of `SwitchboardFeature`.
+
+You can now do things like:
+
+```swift
+let myFeature: MyFeature = ExampleSwitchboard.feature(named: .myFeature)
+print(String(describing: myFeature.values))
+
+// Or do custom things
+myFeature.doSomeCustomLogicThing()
+myFeature.track(event: "somethingGreat", properties: ["wow": "magic"])
+```
+
+### Caching
+
+Switchboard caches all features and experiments, in whichever state they were last in, to the disk between sessions so that when the app is launched again we can immediately have access to them.
+
+If the network connection is down, we'll use the cached values temporarily but otherwise we'll refresh them from the server's latest configuration.
+
+If you made some changes via the Switchboard Debug view (described below), it will use the debug cache instead.
+
+### Debugging
+
+There is now a Switchboard Debug that you can use to toggle on/off features and experiments to test out different UX flows (i.e. what happens if we're in app store review, what shows if I'm part of a new pricing/ad experiment, etc). 
+
+You can also test analytics using that by starting/completing/resetting experiments in the debug view for a given experiment.
+
+Keep in mind that experiments are often exclusive, so running multiple experiments at once of the same type (e.g. 3 different pricing experiments) is probably a bad idea and could lead to buggy behavior in your code. It's best to disable other experiments while you're testing new ones.
+
+Editing of the features & experiments in the debug menu is transactional, so it will only save once you hit the `Save` button (e.g. if you press start experiment, it won't start until it gets saved).
+
+**Important Note**: Once you change something via the Switchboard debug view, Switchboard will only use the debug cache from that point forward and it will persist the changes across launches. If you want to reset back to the server, pull-to-refresh the main debug view like this:
+
+![refresh](https://user-images.githubusercontent.com/30269720/31745766-0d95a52e-b419-11e7-9df2-8586d3c589ec.png)
+
+## Analytics
+
+**Cohort**: Features don't have cohorts, but experiments do. The cohort is still logged as part of an experiment when someone specifically tracks an event on an experiment. 
+
+Example: Say we're in an experiment called "testing123" and then someone says "testing123.track(event: somethingAwesome)", then it'll log an event called `EXP_testing123_somethingAwesome` and there will be a `cohort` property attached to that event that you can segment on.
+
+**Entitled**: The `sb::experiments_entitled` and `sb::features_entitled` user property arrays are set as soon as the Switchboard configuration is downloaded when the app loads and they list which experiments & features are entitled to start (e.g. someone is in an experiment but they haven't started it yet or someone has a feature enabled for them).
+
+Then for experiments, you'll have a new event called `EXP_someExperimentNameHere_ACTIVATE` when they start the experiment and then `EXP_someExperimentNameHere_COMPLETED` when they complete an experiment. Keep in mind that experiments will only "start" when the person hits the point / configuration in the UX flow that triggers it to start.
+
+Features don't start/complete. They are either enabled or disabled but that's it (e.g. app store review is either enabled or not).
+
+**Starting/Completing**: When the activate/completed events are sent for an experiment, each of those will also have the `cohort` property attached and they'll also log additional user properties. For the `activate` (started) scenario, it'll log an array of `sb::experiments_active` with all experiments that have been started so far. For the `completed` scenario, it'll log an array of `sb::experiments_completed` with all experiments that have been completed so far. 
+
 ## Manual Installation
 
 1. Clone this repository and drag the `Switchboard.xcodeproj` into the Project Navigator of your application's Xcode project.
