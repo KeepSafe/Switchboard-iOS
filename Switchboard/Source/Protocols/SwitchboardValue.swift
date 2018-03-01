@@ -21,3 +21,11 @@ public protocol SwitchboardValue: NSObjectProtocol, NSCoding {
     var name: String { get }
 
 }
+
+public protocol SwitchboardJSONTransformable {
+    
+    // MARK: - API
+    
+    func toJSON() -> [String: Any]
+    
+}

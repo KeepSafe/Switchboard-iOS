@@ -68,6 +68,8 @@
 		D4F26D9F1F741C7F006D2FA0 /* SwitchboardLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */; };
 		D4F26DA91F743168006D2FA0 /* SwitchboardProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */; };
 		D4F26DAB1F743483006D2FA0 /* SwitchboardPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */; };
+		D4F8A9FC204868E400B44DCD /* SwitchboardJSONTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A9FB204868E400B44DCD /* SwitchboardJSONTransformer.swift */; };
+		D4F8A9FE20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8A9FD20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift */; };
 		D4FF867D1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FF867C1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +169,8 @@
 		D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardLogging.swift; sourceTree = "<group>"; };
 		D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardProperties.swift; sourceTree = "<group>"; };
 		D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardPropertiesTests.swift; sourceTree = "<group>"; };
+		D4F8A9FB204868E400B44DCD /* SwitchboardJSONTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardJSONTransformer.swift; sourceTree = "<group>"; };
+		D4F8A9FD20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardJSONTransformerTests.swift; sourceTree = "<group>"; };
 		D4FF867C1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCacheTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,6 +242,7 @@
 				D4E07F921F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift */,
 				D4E07F531F707D78003F5A89 /* SwitchboardExperimentTests.swift */,
 				D4E07F901F71B118003F5A89 /* SwitchboardFeatureTests.swift */,
+				D4F8A9FD20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift */,
 				D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */,
 				D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */,
 				D4E07F941F71B5D5003F5A89 /* SwitchboardTests.swift */,
@@ -264,6 +269,7 @@
 				D403E00E1F7074A50083242E /* SwitchboardDefaultStore.swift */,
 				D403E00F1F7074A50083242E /* SwitchboardExperiment.swift */,
 				D403E0101F7074A50083242E /* SwitchboardFeature.swift */,
+				D4F8A9FB204868E400B44DCD /* SwitchboardJSONTransformer.swift */,
 				D403E0111F7074A50083242E /* SwitchboardKeys.swift */,
 				D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */,
 				D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */,
@@ -620,6 +626,7 @@
 				D42937321F79AF51000D06D6 /* SwitchboardDebugController.swift in Sources */,
 				D4E07F5A1F707ED4003F5A89 /* SwitchboardAnalyticsProvider.swift in Sources */,
 				D4E07F5B1F707ED4003F5A89 /* SwitchboardClient.swift in Sources */,
+				D4F8A9FC204868E400B44DCD /* SwitchboardJSONTransformer.swift in Sources */,
 				D4E07F8C1F70983E003F5A89 /* Switchboard.swift in Sources */,
 				D42937891F7C2431000D06D6 /* SwitchboardDebugTapCell.swift in Sources */,
 				D42937B31F7C5F12000D06D6 /* SwitchboardDebugFeatureView.swift in Sources */,
@@ -653,6 +660,7 @@
 				D4FF867D1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift in Sources */,
 				D4E07F931F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift in Sources */,
 				D4E07F951F71B5D5003F5A89 /* SwitchboardTests.swift in Sources */,
+				D4F8A9FE20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift in Sources */,
 				D4E07F9C1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift in Sources */,
 				D4E07F911F71B118003F5A89 /* SwitchboardFeatureTests.swift in Sources */,
 				D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */,

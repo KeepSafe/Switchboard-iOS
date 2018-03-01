@@ -282,6 +282,17 @@ final class SwitchboardExperimentTests: XCTestCase {
         XCTAssertTrue(exp2.canBeStarted)
         XCTAssertTrue(exp2.start())
     }
+    
+    // MARK: - JSON Transformable
+    
+    func testJSONTransformation() {
+        let exp1 = SwitchboardExperiment(name: "exp1", values: ["cohort": "yay"])
+        let json = exp1?.toJSON()
+        XCTAssertNotNil(json)
+        XCTAssertNotNil(json!["exp1"])
+        let values = (json!["exp1"] as! [String: Any])[SwitchboardKeys.values] as! [String: Any]
+        XCTAssertTrue(values[SwitchboardKeys.cohort] as! String == "yay")
+    }
 
     // MARK: - Equality
 

@@ -112,6 +112,17 @@ open class SwitchboardFeature: NSObject, SwitchboardValue {
 
 }
 
+// MARK: - SwitchboardJSONTransformable
+
+extension SwitchboardFeature: SwitchboardJSONTransformable {
+    
+    public func toJSON() -> [String: Any] {
+        let valuesValue: Any = values ?? "<null>"
+        return [name: [SwitchboardKeys.values: valuesValue]]
+    }
+    
+}
+
 // MARK: - Description
 
 extension SwitchboardFeature {
