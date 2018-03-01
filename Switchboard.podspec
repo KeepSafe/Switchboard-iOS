@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
   spec.name         = "Switchboard"
   spec.summary      = "A/B testing and feature flags for iOS built on top of Switchboard."
-  spec.version      = "0.1.1"
+  spec.version      = "0.1.2"
   spec.homepage     = "https://github.com/KeepSafe/Switchboard-iOS"
   spec.license      = { :type => "Apache 2.0", :file => "LICENSE" }
   spec.authors      = { "Keepsafe" => "philipp@getkeepsafe.com" }
