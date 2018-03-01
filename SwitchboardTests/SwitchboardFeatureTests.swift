@@ -90,6 +90,17 @@ final class SwitchboardFeatureTests: XCTestCase {
         featureWithAnalytics.track(event: "testing")
         wait(for: [analytics.trackOnFeatureExpectation], timeout: 5)
     }
+    
+    // MARK: - JSON Transformable
+    
+    func testJSONTransformation() {
+        let feature1 = SwitchboardFeature(name: "feature1", values: ["yay": "yup"])
+        let json = feature1?.toJSON()
+        XCTAssertNotNil(json)
+        XCTAssertNotNil(json!["feature1"])
+        let values = (json!["feature1"] as! [String: Any])[SwitchboardKeys.values] as! [String: Any]
+        XCTAssertTrue(values["yay"] as! String == "yup")
+    }
 
     // MARK: - Equality
 

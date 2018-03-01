@@ -16,4 +16,7 @@ public struct SwitchboardKeys {
     public static let cohort = "cohort"
     public static let values = "values"
     public static let disableAnalytics = "disable_analytics"
+    
+    public static let name = "name"
+    public static let availableCohorts = "availableCohorts"
 }

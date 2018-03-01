@@ -249,6 +249,17 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
 
 }
 
+// MARK: - SwitchboardJSONTransformable
+
+extension SwitchboardExperiment: SwitchboardJSONTransformable {
+    
+    public func toJSON() -> [String: Any] {
+        return [name: [SwitchboardKeys.values: values,
+                       SwitchboardKeys.availableCohorts: availableCohorts]]
+    }
+    
+}
+
 // MARK: - Description
 
 extension SwitchboardExperiment {
