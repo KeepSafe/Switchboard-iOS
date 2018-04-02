@@ -137,6 +137,7 @@ open class Switchboard: SwitchboardClient {
     /// - Parameter experiment: A `SwitchboardExperiment` instance
     open func add(experiment: SwitchboardExperiment) {
         experiments.insert(experiment)
+        SwitchboardPrefillController.shared.add(experiment: experiment)
 
         #if !DEBUG
             SwitchboardLogging.logDangerousCall()
@@ -163,6 +164,7 @@ open class Switchboard: SwitchboardClient {
     /// - Parameter feature: A `SwitchboardFeature` instance
     open func add(feature: SwitchboardFeature) {
         features.insert(feature)
+        SwitchboardPrefillController.shared.add(feature: feature)
 
         #if !DEBUG
             SwitchboardLogging.logDangerousCall()

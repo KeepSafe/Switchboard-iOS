@@ -53,6 +53,7 @@ final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
 
         let experiment = experiments[indexPath.row]
         debugController?.delete(experiment: experiment)
+        SwitchboardPrefillController.shared.add(experiment: experiment)
         tableView.reloadData()
 
         debugController?.cacheAll()
@@ -90,8 +91,55 @@ final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
 fileprivate extension SwitchboardDebugExperimentView {
 
     // MARK: - Actions
-
+    
     @objc func addExperimentTapped() {
+        var existingExperiments = [SwitchboardExperiment]()
+        existingExperiments.append(contentsOf: debugController?.activeExperiments ?? [])
+        existingExperiments.append(contentsOf: debugController?.inactiveExperiments ?? [])
+        if SwitchboardPrefillController.shared.canPrefillExperiments(for: existingExperiments) {
+            showAddExperimentActionSheet(with: existingExperiments)
+        } else {
+            showAddExperimentDialog()
+        }
+    }
+    
+    func showAddExperimentActionSheet(with existingExperiments: [SwitchboardExperiment]) {
+        let actionSheet = UIAlertController(title: "How do you want to add an experiment?", message: nil, preferredStyle: .actionSheet)
+        let typeInNameAction = UIAlertAction(title: "Type in name and cohort", style: .default) { [weak self] _ in
+            self?.showAddExperimentDialog()
+        }
+        let prefillAction = UIAlertAction(title: "Select from existing", style: .default) { [weak self] _ in
+            let vc = SwitchboardPrefillExperimentView(existingExperiments: existingExperiments, experimentSelected: { experiment in
+                self?.add(experiment: experiment)
+            })
+            let navVC = UINavigationController(rootViewController: vc)
+            self?.present(navVC, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(typeInNameAction)
+        actionSheet.addAction(prefillAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func add(experiment: SwitchboardExperiment) {
+        guard debugController?.exists(experiment: experiment) == false else { return }
+        
+        debugController?.activate(experiment: experiment)
+        guard let experimentIndex = debugController?.activeExperiments.index(of: experiment),
+              let sectionIndex = sections.index(of: .enabled) else {
+                tableView.reloadData()
+                return
+        }
+        tableView.beginUpdates()
+        let indexPath = IndexPath(row: experimentIndex, section: sectionIndex)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+        
+        debugController?.cacheAll()
+    }
+
+    func showAddExperimentDialog() {
         let alertController = UIAlertController(title: "Add Experiment", message: "", preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self, weak alertController] alert in
             guard let strongSelf = self,
@@ -103,22 +151,10 @@ fileprivate extension SwitchboardDebugExperimentView {
                   cohortName.isEmpty == false,
                   let switchboard = strongSelf.debugController?.switchboard,
                   let experiment = SwitchboardExperiment(name: experimentName, cohort: cohortName,
-                                                         switchboard: switchboard, analytics: strongSelf.debugController?.analytics),
-                  strongSelf.debugController?.exists(experiment: experiment) == false
+                                                         switchboard: switchboard, analytics: strongSelf.debugController?.analytics)
                 else { return }
 
-            strongSelf.debugController?.activate(experiment: experiment)
-            guard let experimentIndex = strongSelf.debugController?.activeExperiments.index(of: experiment),
-                  let sectionIndex = strongSelf.sections.index(of: .enabled) else {
-                    strongSelf.tableView.reloadData()
-                    return
-            }
-            strongSelf.tableView.beginUpdates()
-            let indexPath = IndexPath(row: experimentIndex, section: sectionIndex)
-            strongSelf.tableView.insertRows(at: [indexPath], with: .automatic)
-            strongSelf.tableView.endUpdates()
-
-            strongSelf.debugController?.cacheAll()
+            strongSelf.add(experiment: experiment)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addTextField { textField in

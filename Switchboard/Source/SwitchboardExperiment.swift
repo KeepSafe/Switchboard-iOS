@@ -35,6 +35,7 @@ open class SwitchboardExperimentFactory {
 
             instances.insert(instance)
         }
+        SwitchboardPrefillController.shared.add(experiments: instances)
         return instances
     }
 
