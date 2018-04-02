@@ -21,6 +21,8 @@ final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
         super.setupView()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addExperimentTapped))
+        tableView.tableHeaderView = header
+        tableView.enableVariableHeightTableHeaderView()
     }
 
     // MARK: - UITableViewDataSource
@@ -69,6 +71,17 @@ final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
         let navVC = UINavigationController(rootViewController: vc)
         navigationController?.present(navVC, animated: true, completion: nil)
     }
+    
+    // MARK: - Private Properties
+    
+    fileprivate lazy var header: SwitchboardDebugListHeader = { [unowned self] in
+        let view = SwitchboardDebugListHeader(enableAllTapped: {
+            self.enableAllTapped()
+        }, disableAllTappped: {
+            self.disableAllTapped()
+        })
+        return view
+    }()
 
 }
 
@@ -117,6 +130,28 @@ fileprivate extension SwitchboardDebugExperimentView {
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func enableAllTapped() {
+        guard let sectionIndex = sections.index(of: .disabled),
+            let experiments = experiments(forSection: sectionIndex)
+            else { return }
+        for experiment in experiments {
+            debugController?.activate(experiment: experiment)
+        }
+        debugController?.cacheAll()
+        tableView.reloadData()
+    }
+    
+    func disableAllTapped() {
+        guard let sectionIndex = sections.index(of: .enabled),
+            let experiments = experiments(forSection: sectionIndex)
+            else { return }
+        for experiment in experiments {
+            debugController?.deactivate(experiment: experiment)
+        }
+        debugController?.cacheAll()
+        tableView.reloadData()
     }
 
     // MARK: - Helpers

@@ -21,6 +21,8 @@ final internal class SwitchboardDebugFeatureView: SwitchboardDebugListView {
         super.setupView()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFeatureTapped))
+        tableView.tableHeaderView = header
+        tableView.enableVariableHeightTableHeaderView()
     }
 
     // MARK: - UITableViewDataSource
@@ -68,6 +70,17 @@ final internal class SwitchboardDebugFeatureView: SwitchboardDebugListView {
         let navVC = UINavigationController(rootViewController: vc)
         navigationController?.present(navVC, animated: true, completion: nil)
     }
+    
+    // MARK: - Private Properties
+    
+    fileprivate lazy var header: SwitchboardDebugListHeader = { [unowned self] in
+        let view = SwitchboardDebugListHeader(enableAllTapped: {
+            self.enableAllTapped()
+        }, disableAllTappped: {
+            self.disableAllTapped()
+        })
+        return view
+    }()
 
 }
 
@@ -108,6 +121,28 @@ fileprivate extension SwitchboardDebugFeatureView {
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func enableAllTapped() {
+        guard let sectionIndex = sections.index(of: .disabled),
+              let features = features(forSection: sectionIndex)
+            else { return }
+        for feature in features {
+            debugController?.activate(feature: feature)
+        }
+        debugController?.cacheAll()
+        tableView.reloadData()
+    }
+    
+    func disableAllTapped() {
+        guard let sectionIndex = sections.index(of: .enabled),
+              let features = features(forSection: sectionIndex)
+            else { return }
+        for feature in features {
+            debugController?.deactivate(feature: feature)
+        }
+        debugController?.cacheAll()
+        tableView.reloadData()
     }
 
     // MARK: - Helpers

@@ -38,6 +38,8 @@
 		D454BDFC1F8BE6700015EFEE /* ExampleSwitchboard+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */; };
 		D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */; };
 		D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */; };
+		D4BE2084207266F900B012A0 /* UITableView+Bug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE2083207266F900B012A0 /* UITableView+Bug.swift */; };
+		D4BE20862072673700B012A0 /* SwitchboardDebugListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE20852072673700B012A0 /* SwitchboardDebugListHeader.swift */; };
 		D4C0785B1F748B7600C585F0 /* TestAnalyticsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */; };
 		D4E0606F1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */; };
 		D4E0607D1F84463300F385D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0607C1F84463300F385D3 /* AppDelegate.swift */; };
@@ -145,6 +147,8 @@
 		D42C110D1F8BDBD900D13187 /* ExampleSwitchboard+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExampleSwitchboard+Example.swift"; sourceTree = "<group>"; };
 		D42C11171F8BDE3C00D13187 /* ActiveExperiment1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExperiment1.swift; sourceTree = "<group>"; };
 		D42C11191F8BDE8000D13187 /* ActiveFeature1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveFeature1.swift; sourceTree = "<group>"; };
+		D4BE2083207266F900B012A0 /* UITableView+Bug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Bug.swift"; sourceTree = "<group>"; };
+		D4BE20852072673700B012A0 /* SwitchboardDebugListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugListHeader.swift; sourceTree = "<group>"; };
 		D4C0785A1F748B7600C585F0 /* TestAnalyticsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnalyticsProvider.swift; sourceTree = "<group>"; };
 		D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugControllerTests.swift; sourceTree = "<group>"; };
 		D4E0607A1F84463300F385D3 /* SwitchboardExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchboardExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				D42937811F7C1F7B000D06D6 /* SwitchboardExperiment+Debug.swift */,
+				D4BE2083207266F900B012A0 /* UITableView+Bug.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 			children = (
 				D42937AC1F7C5EE5000D06D6 /* SwitchboardDebugExperimentView.swift */,
 				D42937AD1F7C5EE5000D06D6 /* SwitchboardDebugFeatureView.swift */,
+				D4BE20852072673700B012A0 /* SwitchboardDebugListHeader.swift */,
 				D42937AE1F7C5EE5000D06D6 /* SwitchboardDebugListView.swift */,
 			);
 			path = Listing;
@@ -618,6 +624,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BE2084207266F900B012A0 /* UITableView+Bug.swift in Sources */,
 				D4F26D9F1F741C7F006D2FA0 /* SwitchboardLogging.swift in Sources */,
 				D42937A21F7C528E000D06D6 /* SwitchboardDebugTextViewCell.swift in Sources */,
 				D42937B21F7C5F12000D06D6 /* SwitchboardDebugExperimentView.swift in Sources */,
@@ -642,6 +649,7 @@
 				D4E07F591F707ED0003F5A89 /* SwitchboardKeys.swift in Sources */,
 				D429379E1F7C4890000D06D6 /* SwitchboardDebugSetting.swift in Sources */,
 				D4E07FAF1F71C436003F5A89 /* SwitchboardCache.swift in Sources */,
+				D4BE20862072673700B012A0 /* SwitchboardDebugListHeader.swift in Sources */,
 				D42937341F79B7E8000D06D6 /* SwitchboardDebugView.swift in Sources */,
 				D42938071F7EC460000D06D6 /* SwitchboardDebugButtonCell.swift in Sources */,
 				D4E07F571F707ED0003F5A89 /* SwitchboardExperiment.swift in Sources */,
