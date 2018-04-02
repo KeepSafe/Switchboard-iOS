@@ -52,6 +52,7 @@ final internal class SwitchboardDebugFeatureView: SwitchboardDebugListView {
 
         let feature = features[indexPath.row]
         debugController?.delete(feature: feature)
+        SwitchboardPrefillController.shared.add(feature: feature)
         tableView.reloadData()
 
         debugController?.cacheAll()
@@ -91,28 +92,46 @@ fileprivate extension SwitchboardDebugFeatureView {
     // MARK: - Actions
 
     @objc func addFeatureTapped() {
-        let alertController = UIAlertController(title: "Add Feature", message: "", preferredStyle: .alert)
+        var existingFeatures = [SwitchboardFeature]()
+        existingFeatures.append(contentsOf: debugController?.activeFeatures ?? [])
+        existingFeatures.append(contentsOf: debugController?.inactiveFeatures ?? [])
+        if SwitchboardPrefillController.shared.canPrefillFeatures(for: existingFeatures) {
+            showAddFeatureActionSheet(with: existingFeatures)
+        } else {
+            showAddFeatureDialog()
+        }
+    }
+    
+    func showAddFeatureActionSheet(with existingFeatures: [SwitchboardFeature]) {
+        let actionSheet = UIAlertController(title: "How do you want to add a feature?", message: nil, preferredStyle: .actionSheet)
+        let typeInNameAction = UIAlertAction(title: "Type in name", style: .default) { [weak self] _ in
+            self?.showAddFeatureDialog()
+        }
+        let prefillAction = UIAlertAction(title: "Select from existing", style: .default) { [weak self] _ in
+            let vc = SwitchboardPrefillFeatureView(existingFeatures: existingFeatures, featureSelected: { feature in
+                self?.add(feature: feature)
+            })
+            let navVC = UINavigationController(rootViewController: vc)
+            self?.present(navVC, animated: true, completion: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(typeInNameAction)
+        actionSheet.addAction(prefillAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true, completion: nil)
+    }
+    
+    func showAddFeatureDialog() {
+        let alertController = UIAlertController(title: "Add Feature", message: nil, preferredStyle: .alert)
         let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self, weak alertController] alert in
             guard let strongSelf = self,
                   let textField = alertController?.textFields?.first,
                   let featureName = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines),
                   featureName.isEmpty == false,
-                  let feature = SwitchboardFeature(name: featureName, analytics: strongSelf.debugController?.analytics),
-                  strongSelf.debugController?.exists(feature: feature) == false
-            else { return }
-
-            strongSelf.debugController?.activate(feature: feature)
-            guard let featureIndex = strongSelf.debugController?.activeFeatures.index(of: feature),
-                  let sectionIndex = strongSelf.sections.index(of: .enabled) else {
-                strongSelf.tableView.reloadData()
-                return
-            }
-            strongSelf.tableView.beginUpdates()
-            let indexPath = IndexPath(row: featureIndex, section: sectionIndex)
-            strongSelf.tableView.insertRows(at: [indexPath], with: .automatic)
-            strongSelf.tableView.endUpdates()
-
-            strongSelf.debugController?.cacheAll()
+                  let feature = SwitchboardFeature(name: featureName, analytics: strongSelf.debugController?.analytics)
+                else { return }
+            
+            strongSelf.add(feature: feature)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addTextField { textField in
@@ -121,6 +140,23 @@ fileprivate extension SwitchboardDebugFeatureView {
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func add(feature: SwitchboardFeature) {
+        guard debugController?.exists(feature: feature) == false else { return }
+        
+        debugController?.activate(feature: feature)
+        guard let featureIndex = debugController?.activeFeatures.index(of: feature),
+              let sectionIndex = sections.index(of: .enabled) else {
+                tableView.reloadData()
+                return
+        }
+        tableView.beginUpdates()
+        let indexPath = IndexPath(row: featureIndex, section: sectionIndex)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+        tableView.endUpdates()
+        
+        debugController?.cacheAll()
     }
     
     func enableAllTapped() {

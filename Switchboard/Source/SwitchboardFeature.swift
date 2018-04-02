@@ -33,6 +33,7 @@ open class SwitchboardFeatureFactory {
                 instances.insert(instance)
             }
         }
+        SwitchboardPrefillController.shared.add(features: instances)
         return instances
     }
 
