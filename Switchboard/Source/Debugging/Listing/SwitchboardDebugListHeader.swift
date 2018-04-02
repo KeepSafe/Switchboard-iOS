@@ -6,6 +6,7 @@
 //  Copyright © 2018 Keepsafe Software Inc. All rights reserved.
 //
 
+#if os(iOS)
 import UIKit
 
 final internal class SwitchboardDebugListHeader: UIView {
@@ -86,3 +87,4 @@ fileprivate extension SwitchboardDebugListHeader {
     }
     
 }
+#endif
