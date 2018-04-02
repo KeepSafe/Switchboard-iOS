@@ -16,10 +16,11 @@ final internal class SwitchboardPrefillCache: SwitchboardCache {
 /// experiments used for prefilling the UI
 final internal class SwitchboardPrefillController {
     
-    // MARK: - Properties
+    // MARK: - Instantiation
     
-    /// Shared instance, if needed
     static let shared = SwitchboardPrefillController()
+    
+    // MARK: - Properties
     
     /// The features available to prefill from
     var features = Set<SwitchboardFeature>()
@@ -28,6 +29,19 @@ final internal class SwitchboardPrefillController {
     var experiments = Set<SwitchboardExperiment>()
     
     // MARK: - API
+    
+    /// Populates experiments from the registered experiment names within `SwitchboardExperiment`'s
+    /// static property named `namesMappedToCohorts` that keeps track of programmatically named cohorts
+    ///
+    /// - Parameters:
+    ///   - switchboard: The `Switchboard` instance to create any new experiments within
+    ///   - analytics: An optional `SwitchboardAnalyticsProvider` to associate the experiments with
+    func populateExperimentsIfNeeded(in switchboard: Switchboard, analytics: SwitchboardAnalyticsProvider? = nil) {
+        for (experimentName, cohorts) in SwitchboardExperiment.namesMappedToCohorts {
+            guard let experiment = SwitchboardExperiment(name: experimentName, cohort: cohorts.first ?? "control", switchboard: switchboard, analytics: analytics) else { continue }
+            add(experiment: experiment)
+        }
+    }
     
     /// Checks the given array against the prefill's features to see if there are any uniques
     ///
@@ -48,16 +62,16 @@ final internal class SwitchboardPrefillController {
     /// Subtracts existing features from the prefill cache's features and returns the unique features remaining
     ///
     /// - Parameter existingFeatures: The existing features to unique from
-    /// - Returns: A unique set of features they can prefill with
+    /// - Returns: A unique set of features they can prefill with, sorted alphabetically
     func featuresUnique(from existingFeatures: [SwitchboardFeature]) -> [SwitchboardFeature] {
-        return Array(features.subtracting(existingFeatures))
+        return Array(features.subtracting(existingFeatures)).sorted(by: { $0.name < $1.name })
     }
     /// Subtracts existing experiments from the prefill cache's experiments and returns the unique experiments remaining
     ///
     /// - Parameter existingFeatures: The existing experiments to unique from
-    /// - Returns: A unique set of experiments they can prefill with
+    /// - Returns: A unique set of experiments they can prefill with, sorted alphabetically
     func experimentsUnique(from existingExperiments: [SwitchboardExperiment]) -> [SwitchboardExperiment] {
-        return Array(experiments.subtracting(existingExperiments))
+        return Array(experiments.subtracting(existingExperiments)).sorted(by: { $0.name < $1.name })
     }
     
     /// Adds the given features to the prefill cache

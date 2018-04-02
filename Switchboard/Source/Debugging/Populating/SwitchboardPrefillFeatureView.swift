@@ -23,6 +23,8 @@
             self.featureSelected = featureSelected
             
             super.init()
+            
+            refreshFeaturesToShow()
         }
         
         // MARK: - Overrides
@@ -51,6 +53,7 @@
             guard editingStyle == .delete else { return }
             
             SwitchboardPrefillController.shared.delete(feature: features[indexPath.row])
+            refreshFeaturesToShow()
             tableView.reloadData()
         }
         
@@ -68,9 +71,11 @@
         fileprivate let existingFeatures: [SwitchboardFeature]
         fileprivate let featureSelected: SwitchboardPrefillFeatureSelected
         
-        fileprivate lazy var features: [SwitchboardFeature] = { [unowned self] in
-            return SwitchboardPrefillController.shared.featuresUnique(from: self.existingFeatures)
-        }()
+        fileprivate var features = [SwitchboardFeature]()
+        
+        fileprivate func refreshFeaturesToShow() {
+            features = SwitchboardPrefillController.shared.featuresUnique(from: existingFeatures)
+        }
         
         // MARK: - Unsupported Initializers
         
