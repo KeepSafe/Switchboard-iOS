@@ -40,7 +40,8 @@ fileprivate extension AppDelegate {
     }
 
     func setupAppearances() {
-        UIButton.appearance().setTitleColor(.blue, for: .normal)
+        let color = UIColor(red: 0, green: 122/255, blue: 1, alpha: 1)
+        UIButton.appearance().setTitleColor(color, for: .normal)
     }
 
     func activateSwitchboard() {
