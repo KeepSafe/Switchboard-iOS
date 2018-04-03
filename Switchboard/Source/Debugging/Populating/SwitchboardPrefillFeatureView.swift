@@ -29,7 +29,7 @@
         
         // MARK: - Overrides
         
-        override var debugTitle: String { return "Features" }
+        override var debugTitle: String { return "Prefill Features" }
         
         // MARK: - UITableViewDataSource
         
@@ -54,7 +54,11 @@
             
             SwitchboardPrefillController.shared.delete(feature: features[indexPath.row])
             refreshFeaturesToShow()
-            tableView.reloadData()
+            if features.count == 0 {
+                dismiss(animated: true, completion: nil)
+            } else {
+                tableView.reloadData()
+            }
         }
         
         // MARK: - UITableViewDelegate

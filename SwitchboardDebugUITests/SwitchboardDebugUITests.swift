@@ -52,19 +52,56 @@ final class SwitchboardDebugUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Edit Feature"].exists)
         tapCancel()
     }
+    
+    func testEnableAllFeatures() {
+        showFeaturesList()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
+        app.buttons["Enable All"].tap()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveFeature1"))
+    }
+    
+    func testDisableAllFeatures() {
+        showFeaturesList()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
+        app.buttons["Disable All"].tap()
+        XCTAssertTrue(app.cellExists(containing: "🔴 activeFeature1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
+    }
 
     func testAddingFeature() {
-        addFeature(named: "newFeature")
+        addFeature(selectingFromPrefill: false, named: "newFeature")
         XCTAssertTrue(app.cellExists(containing: "newFeature"))
     }
 
     func testRemovingFeature() {
-        addFeature(named: "newFeature")
-        XCTAssertTrue(app.cellExists(containing: "newFeature"))
-
-        app.swipeCellLeft(containing: "newFeature")
+        addFeature(selectingFromPrefill: false, named: "newFeature")
+        removeFeature(named: "newFeature")
+    }
+    
+    func testPrefillingFeaturesVerifyAndCancel() {
+        prefillFeature(named: "prefilledFeature")
+        app.navigationBars["Features"].buttons["Add"].tap()
+        let actionSheet = app.sheets["How do you want to add a feature?"]
+        actionSheet.buttons["Select from existing"].tap()
+        XCTAssertTrue(app.cellExists(containing: "prefilledFeature"))
+        tapCancel()
+    }
+    
+    func testDeletingLastPrefillFeatureDismissesPrefillView() {
+        prefillFeature(named: "prefilledFeature")
+        
+        app.navigationBars["Features"].buttons["Add"].tap()
+        let actionSheet = app.sheets["How do you want to add a feature?"]
+        actionSheet.buttons["Select from existing"].tap()
+        XCTAssertTrue(app.navigationBars["Prefill Features"].exists)
+        
+        app.swipeCellLeft(containing: "prefilledFeature")
         tapDelete()
-        XCTAssertFalse(app.cellExists(containing: "newFeature"))
+        XCTAssertFalse(app.cellExists(containing: "prefilledFeature"))
+        XCTAssertFalse(app.navigationBars["Prefill Features"].exists)
     }
 
     func testTogglingFeatures() {
@@ -114,9 +151,53 @@ final class SwitchboardDebugUITests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Edit Experiment"].exists)
         tapCancel()
     }
+    
+    func testEnableAllExperiments() {
+        showExperimentsList()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
+        app.buttons["Enable All"].tap()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveExperiment1"))
+    }
+    
+    func testDisableAllExperiments() {
+        showExperimentsList()
+        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
+        app.buttons["Disable All"].tap()
+        XCTAssertTrue(app.cellExists(containing: "🔴 activeExperiment1"))
+        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
+    }
+    
+    func testPrefillingExperimentsCancel() {
+        showExperimentsList()
+        app.navigationBars["Experiments"].buttons["Add"].tap()
+        let actionSheet = app.sheets["How do you want to add an experiment?"]
+        actionSheet.buttons["Select from existing"].tap()
+        tapCancel()
+    }
 
+    func testPrefillingExperimentsFromProgrammaticNameMappings() {
+        addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment")
+        XCTAssertTrue(app.cellExists(containing: "availableCohortExperiment"))
+    }
+    
+    func testDeletingLastPrefillDismissesPrefillView() {
+        showExperimentsList()
+        app.navigationBars["Experiments"].buttons["Add"].tap()
+        let actionSheet = app.sheets["How do you want to add an experiment?"]
+        actionSheet.buttons["Select from existing"].tap()
+        XCTAssertTrue(app.navigationBars["Prefill Experiments"].exists)
+        
+        app.swipeCellLeft(containing: "availableCohortExperiment")
+        tapDelete()
+        XCTAssertFalse(app.cellExists(containing: "availableCohortExperiment"))
+        XCTAssertFalse(app.navigationBars["Prefill Experiments"].exists)
+    }
+    
     func testPrepopulatingAvailableCohorts() {
-        addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment", cohort: "yay")
+        addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment")
         showExperimentDetail(for: "availableCohortExperiment")
         XCTAssertTrue(app.cellExists(containing: "control"))
         XCTAssertTrue(app.cellExists(containing: "cohort1"))
@@ -297,18 +378,36 @@ fileprivate extension SwitchboardDebugUITests {
         app.tapCell(containing: experimentName)
     }
 
-    func addFeature(named name: String) {
+    func addFeature(selectingFromPrefill: Bool, named name: String) {
         showFeaturesList()
 
         app.navigationBars["Features"].buttons["Add"].tap()
-        let addFeatureAlert = app.alerts["Add Feature"]
-        let featureNameTextField = addFeatureAlert.collectionViews.textFields["Feature name"]
-        featureNameTextField.tap()
-        featureNameTextField.typeText(name)
-        addFeatureAlert.buttons["Save"].tap()
+        let actionSheet = app.sheets["How do you want to add a feature?"]
+        if selectingFromPrefill {
+            actionSheet.buttons["Select from existing"].tap()
+            app.tapCell(containing: name)
+        } else {
+            let addFeatureAlert = app.alerts["Add Feature"]
+            let featureNameTextField = addFeatureAlert.collectionViews.textFields["Feature name"]
+            featureNameTextField.tap()
+            featureNameTextField.typeText(name)
+            addFeatureAlert.buttons["Save"].tap()
+        }
+    }
+    
+    func prefillFeature(named name: String) {
+        addFeature(selectingFromPrefill: false, named: name)
+        removeFeature(named: name)
+    }
+    
+    func removeFeature(named name: String) {
+        XCTAssertTrue(app.cellExists(containing: name))
+        app.swipeCellLeft(containing: name)
+        tapDelete()
+        XCTAssertFalse(app.cellExists(containing: name))
     }
 
-    func addExperiment(selectingFromPrefill: Bool, named name: String, cohort: String) {
+    func addExperiment(selectingFromPrefill: Bool, named name: String, cohort: String = "yay") {
         showExperimentsList()
 
         app.navigationBars["Experiments"].buttons["Add"].tap()

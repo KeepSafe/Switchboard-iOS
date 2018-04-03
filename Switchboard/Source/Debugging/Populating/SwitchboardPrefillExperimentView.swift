@@ -29,7 +29,7 @@
         
         // MARK: - Overrides
         
-        override var debugTitle: String { return "Experiments" }
+        override var debugTitle: String { return "Prefill Experiments" }
         
         // MARK: - UITableViewDataSource
         
@@ -55,7 +55,11 @@
             
             SwitchboardPrefillController.shared.delete(experiment: experiments[indexPath.row])
             refreshExperimentsToShow()
-            tableView.reloadData()
+            if experiments.count == 0 {
+                dismiss(animated: true, completion: nil)
+            } else {
+                tableView.reloadData()
+            }
         }
         
         // MARK: - UITableViewDelegate
