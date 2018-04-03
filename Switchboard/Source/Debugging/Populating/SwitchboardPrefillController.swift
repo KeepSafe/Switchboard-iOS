@@ -20,13 +20,18 @@ final internal class SwitchboardPrefillController {
     
     static let shared = SwitchboardPrefillController()
     
+    /// Instantiates an instance and restores any features or experiments currently cached
+    init() {
+        restoreFromCache()
+    }
+    
     // MARK: - Properties
     
     /// The features available to prefill from
-    var features = Set<SwitchboardFeature>()
+    fileprivate(set) var features = Set<SwitchboardFeature>()
     
     /// The experiments available to prefill from
-    var experiments = Set<SwitchboardExperiment>()
+    fileprivate(set) var experiments = Set<SwitchboardExperiment>()
     
     // MARK: - API
     
@@ -124,6 +129,18 @@ final internal class SwitchboardPrefillController {
         cacheAll()
     }
     
+    /// Clears all features and updates cache
+    func clearFeatures() {
+        features.removeAll()
+        cacheAll()
+    }
+    
+    /// Clears all experiments and updates cache
+    func clearExperiments() {
+        experiments.removeAll()
+        cacheAll()
+    }
+    
 }
 
 // MARK: - Private API
@@ -132,6 +149,16 @@ fileprivate extension SwitchboardPrefillController {
     
     func cacheAll() {
         SwitchboardPrefillCache.cache(experiments: experiments, features: features)
+    }
+    
+    func restoreFromCache() {
+        let (experiments, features) = SwitchboardPrefillCache.restoreFromCache()
+        if let e = experiments {
+            self.experiments = e
+        }
+        if let f = features {
+            self.features = f
+        }
     }
     
 }
