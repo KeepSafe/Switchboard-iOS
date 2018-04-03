@@ -30,6 +30,8 @@ internal class SwitchboardDebugListView: UITableViewController {
         super.init(style: .grouped)
 
         setupView()
+        SwitchboardPrefillController.shared.populateExperimentsIfNeeded(in: debugController.switchboard,
+                                                                        analytics: debugController.analytics)
     }
 
     // MARK: - Properties

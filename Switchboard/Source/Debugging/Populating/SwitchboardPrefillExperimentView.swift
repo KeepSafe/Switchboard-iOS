@@ -23,11 +23,13 @@
             self.experimentSelected = experimentSelected
             
             super.init()
+            
+            refreshExperimentsToShow()
         }
         
         // MARK: - Overrides
         
-        override var debugTitle: String { return "Experiments" }
+        override var debugTitle: String { return "Prefill Experiments" }
         
         // MARK: - UITableViewDataSource
         
@@ -52,7 +54,12 @@
             guard editingStyle == .delete else { return }
             
             SwitchboardPrefillController.shared.delete(experiment: experiments[indexPath.row])
-            tableView.reloadData()
+            refreshExperimentsToShow()
+            if experiments.count == 0 {
+                dismiss(animated: true, completion: nil)
+            } else {
+                tableView.reloadData()
+            }
         }
         
         // MARK: - UITableViewDelegate
@@ -69,9 +76,11 @@
         fileprivate let existingExperiments: [SwitchboardExperiment]
         fileprivate let experimentSelected: SwitchboardPrefillExperimentSelected
         
-        fileprivate lazy var experiments: [SwitchboardExperiment] = { [unowned self] in
-            return SwitchboardPrefillController.shared.experimentsUnique(from: self.existingExperiments)
-        }()
+        fileprivate var experiments = [SwitchboardExperiment]()
+        
+        fileprivate func refreshExperimentsToShow() {
+            experiments = SwitchboardPrefillController.shared.experimentsUnique(from: existingExperiments)
+        }
         
         // MARK: - Unsupported Initializers
         
