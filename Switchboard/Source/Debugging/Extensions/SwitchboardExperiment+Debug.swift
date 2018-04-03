@@ -6,7 +6,6 @@
 //  Copyright © 2017 Keepsafe Software Inc. All rights reserved.
 //
 
-#if os(iOS)
 import Foundation
 
 internal extension SwitchboardExperiment {
@@ -16,4 +15,3 @@ internal extension SwitchboardExperiment {
     }
 
 }
-#endif
