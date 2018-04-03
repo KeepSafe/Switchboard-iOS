@@ -14,6 +14,20 @@
         
         // MARK: - API
         
+        func testClearCache() {
+            let pc = SwitchboardPrefillController()
+            addFeature(in: pc)
+            addExperiment(in: pc)
+            
+            pc.clearCache()
+            XCTAssertTrue(pc.features.isEmpty)
+            XCTAssertTrue(pc.experiments.isEmpty)
+            // Try to restore anything cached in a new controller
+            let pc2 = SwitchboardPrefillController()
+            XCTAssertTrue(pc2.features.isEmpty)
+            XCTAssertTrue(pc2.experiments.isEmpty)
+        }
+        
         func testCachePersistsAcrossInstances() {
             let pc = SwitchboardPrefillController()
             clearFeatures(in: pc)

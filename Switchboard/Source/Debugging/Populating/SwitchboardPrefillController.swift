@@ -14,18 +14,18 @@ final internal class SwitchboardPrefillCache: SwitchboardCache {
 
 /// Controller for adding and removing historical features and
 /// experiments used for prefilling the UI
-final internal class SwitchboardPrefillController {
+final public class SwitchboardPrefillController {
     
     // MARK: - Instantiation
     
-    static let shared = SwitchboardPrefillController()
+    public static let shared = SwitchboardPrefillController()
     
     /// Instantiates an instance and restores any features or experiments currently cached
     init() {
         restoreFromCache()
     }
     
-    // MARK: - Properties
+    // MARK: - Internal Properties
     
     /// The features available to prefill from
     fileprivate(set) var features = Set<SwitchboardFeature>()
@@ -33,7 +33,16 @@ final internal class SwitchboardPrefillController {
     /// The experiments available to prefill from
     fileprivate(set) var experiments = Set<SwitchboardExperiment>()
     
-    // MARK: - API
+    // MARK: - Public API
+    
+    /// Clears all features and experiments from memory and disk
+    public func clearCache() {
+        features.removeAll()
+        experiments.removeAll()
+        SwitchboardPrefillCache.clear()
+    }
+    
+    // MARK: - Internal API
     
     /// Populates experiments from the registered experiment names within `SwitchboardExperiment`'s
     /// static property named `namesMappedToCohorts` that keeps track of programmatically named cohorts

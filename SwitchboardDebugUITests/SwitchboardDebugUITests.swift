@@ -24,6 +24,7 @@ final class SwitchboardDebugUITests: XCTestCase {
         app.launch()
 
         clearSwitchboardValuesAndCache()
+        clearSwitchboardPrefillCache()
     }
 
     // MARK: - Generic Tests
@@ -115,22 +116,21 @@ final class SwitchboardDebugUITests: XCTestCase {
     }
 
     func testPrepopulatingAvailableCohorts() {
-        addExperiment(named: "availableCohortExperiment", cohort: "yay")
+        addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment", cohort: "yay")
         showExperimentDetail(for: "availableCohortExperiment")
         XCTAssertTrue(app.cellExists(containing: "control"))
         XCTAssertTrue(app.cellExists(containing: "cohort1"))
         XCTAssertTrue(app.cellExists(containing: "cohort2"))
-        XCTAssertTrue(app.cellExists(containing: "yay"))
         tapCancel()
     }
 
     func testAddingExperiment() {
-        addExperiment(named: "newExperiment", cohort: "yay")
+        addExperiment(selectingFromPrefill: false, named: "newExperiment", cohort: "yay")
         XCTAssertTrue(app.cellExists(containing: "newExperiment"))
     }
 
     func testRemovingExperiment() {
-        addExperiment(named: "newExperiment", cohort: "yay")
+        addExperiment(selectingFromPrefill: false, named: "newExperiment", cohort: "yay")
         XCTAssertTrue(app.cellExists(containing: "newExperiment"))
 
         app.swipeCellLeft(containing: "newExperiment")
@@ -223,7 +223,7 @@ final class SwitchboardDebugUITests: XCTestCase {
 
     func testPreventingExperimentFromStarting() {
         let preventedExp = "somePreventedExperimentNameHere"
-        addExperiment(named: preventedExp, cohort: "yay")
+        addExperiment(selectingFromPrefill: false, named: preventedExp, cohort: "yay")
 
         // Reset it just in case we had a failed test scenario
         showExperimentDetail(for: preventedExp)
@@ -247,6 +247,10 @@ fileprivate extension SwitchboardDebugUITests {
 
     func clearSwitchboardValuesAndCache() {
         app.buttons["Reset Switchboard"].tap()
+    }
+    
+    func clearSwitchboardPrefillCache() {
+        app.buttons["Reset Switchboard's Prefill"].tap()
     }
 
     // TODO: This seems broken as of Xcode 9; alternatives?
@@ -304,18 +308,25 @@ fileprivate extension SwitchboardDebugUITests {
         addFeatureAlert.buttons["Save"].tap()
     }
 
-    func addExperiment(named name: String, cohort: String) {
+    func addExperiment(selectingFromPrefill: Bool, named name: String, cohort: String) {
         showExperimentsList()
 
         app.navigationBars["Experiments"].buttons["Add"].tap()
-        let addExperimentAlert = app.alerts["Add Experiment"]
-        let featureNameTextField = addExperimentAlert.collectionViews.textFields["Experiment name"]
-        featureNameTextField.tap()
-        featureNameTextField.typeText(name)
-        let cohortNameTextField = addExperimentAlert.collectionViews.textFields["Cohort name"]
-        cohortNameTextField.tap()
-        cohortNameTextField.typeText(cohort)
-        addExperimentAlert.buttons["Save"].tap()
+        let actionSheet = app.sheets["How do you want to add an experiment?"]
+        if selectingFromPrefill {
+            actionSheet.buttons["Select from existing"].tap()
+            app.tapCell(containing: name)
+        } else {
+            actionSheet.buttons["Type in name and cohort"].tap()
+            let addExperimentAlert = app.alerts["Add Experiment"]
+            let featureNameTextField = addExperimentAlert.collectionViews.textFields["Experiment name"]
+            featureNameTextField.tap()
+            featureNameTextField.typeText(name)
+            let cohortNameTextField = addExperimentAlert.collectionViews.textFields["Cohort name"]
+            cohortNameTextField.tap()
+            cohortNameTextField.typeText(cohort)
+            addExperimentAlert.buttons["Save"].tap()
+        }
     }
 
     func addExperimentCohort(named name: String, on experimentName: String) {
