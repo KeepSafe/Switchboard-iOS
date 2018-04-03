@@ -14,21 +14,35 @@ final internal class SwitchboardPrefillCache: SwitchboardCache {
 
 /// Controller for adding and removing historical features and
 /// experiments used for prefilling the UI
-final internal class SwitchboardPrefillController {
+final public class SwitchboardPrefillController {
     
     // MARK: - Instantiation
     
-    static let shared = SwitchboardPrefillController()
+    public static let shared = SwitchboardPrefillController()
     
-    // MARK: - Properties
+    /// Instantiates an instance and restores any features or experiments currently cached
+    init() {
+        restoreFromCache()
+    }
+    
+    // MARK: - Internal Properties
     
     /// The features available to prefill from
-    var features = Set<SwitchboardFeature>()
+    fileprivate(set) var features = Set<SwitchboardFeature>()
     
     /// The experiments available to prefill from
-    var experiments = Set<SwitchboardExperiment>()
+    fileprivate(set) var experiments = Set<SwitchboardExperiment>()
     
-    // MARK: - API
+    // MARK: - Public API
+    
+    /// Clears all features and experiments from memory and disk
+    public func clearCache() {
+        features.removeAll()
+        experiments.removeAll()
+        SwitchboardPrefillCache.clear()
+    }
+    
+    // MARK: - Internal API
     
     /// Populates experiments from the registered experiment names within `SwitchboardExperiment`'s
     /// static property named `namesMappedToCohorts` that keeps track of programmatically named cohorts
@@ -124,6 +138,18 @@ final internal class SwitchboardPrefillController {
         cacheAll()
     }
     
+    /// Clears all features and updates cache
+    func clearFeatures() {
+        features.removeAll()
+        cacheAll()
+    }
+    
+    /// Clears all experiments and updates cache
+    func clearExperiments() {
+        experiments.removeAll()
+        cacheAll()
+    }
+    
 }
 
 // MARK: - Private API
@@ -132,6 +158,16 @@ fileprivate extension SwitchboardPrefillController {
     
     func cacheAll() {
         SwitchboardPrefillCache.cache(experiments: experiments, features: features)
+    }
+    
+    func restoreFromCache() {
+        let (experiments, features) = SwitchboardPrefillCache.restoreFromCache()
+        if let e = experiments {
+            self.experiments = e
+        }
+        if let f = features {
+            self.features = f
+        }
     }
     
 }

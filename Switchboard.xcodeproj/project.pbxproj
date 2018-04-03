@@ -71,6 +71,7 @@
 		D4E07F9C1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */; };
 		D4E07FAC1F71C3A4003F5A89 /* SwitchboardCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07FAB1F71C3A4003F5A89 /* SwitchboardCacheable.swift */; };
 		D4E07FAF1F71C436003F5A89 /* SwitchboardCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E07FAE1F71C436003F5A89 /* SwitchboardCache.swift */; };
+		D4EB06CA2072BDB0005DAACC /* SwitchboardPrefillControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EB06C92072BDB0005DAACC /* SwitchboardPrefillControllerTests.swift */; };
 		D4F26D9F1F741C7F006D2FA0 /* SwitchboardLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */; };
 		D4F26DA91F743168006D2FA0 /* SwitchboardProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */; };
 		D4F26DAB1F743483006D2FA0 /* SwitchboardPropertiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */; };
@@ -178,6 +179,7 @@
 		D4E07F9B1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardSubclassTests.swift; sourceTree = "<group>"; };
 		D4E07FAB1F71C3A4003F5A89 /* SwitchboardCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCacheable.swift; sourceTree = "<group>"; };
 		D4E07FAE1F71C436003F5A89 /* SwitchboardCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardCache.swift; sourceTree = "<group>"; };
+		D4EB06C92072BDB0005DAACC /* SwitchboardPrefillControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardPrefillControllerTests.swift; sourceTree = "<group>"; };
 		D4F26D9E1F741C7F006D2FA0 /* SwitchboardLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardLogging.swift; sourceTree = "<group>"; };
 		D4F26DA81F743168006D2FA0 /* SwitchboardProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardProperties.swift; sourceTree = "<group>"; };
 		D4F26DAA1F743483006D2FA0 /* SwitchboardPropertiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardPropertiesTests.swift; sourceTree = "<group>"; };
@@ -429,6 +431,7 @@
 		D4E0606D1F82F44A00F385D3 /* Debugging */ = {
 			isa = PBXGroup;
 			children = (
+				D4EB06C82072BD88005DAACC /* Populating */,
 				D4E0606E1F82F56800F385D3 /* SwitchboardDebugControllerTests.swift */,
 			);
 			path = Debugging;
@@ -467,6 +470,14 @@
 				D4E060B61F844D0D00F385D3 /* Info.plist */,
 			);
 			path = SwitchboardDebugUITests;
+			sourceTree = "<group>";
+		};
+		D4EB06C82072BD88005DAACC /* Populating */ = {
+			isa = PBXGroup;
+			children = (
+				D4EB06C92072BDB0005DAACC /* SwitchboardPrefillControllerTests.swift */,
+			);
+			path = Populating;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -692,6 +703,7 @@
 				D4FF867D1F71D9DC003EAAC4 /* SwitchboardCacheTests.swift in Sources */,
 				D4E07F931F71B433003F5A89 /* SwitchboardDefaultStoreTests.swift in Sources */,
 				D4E07F951F71B5D5003F5A89 /* SwitchboardTests.swift in Sources */,
+				D4EB06CA2072BDB0005DAACC /* SwitchboardPrefillControllerTests.swift in Sources */,
 				D4F8A9FE20486C8B00B44DCD /* SwitchboardJSONTransformerTests.swift in Sources */,
 				D4E07F9C1F71BAE0003F5A89 /* SwitchboardSubclassTests.swift in Sources */,
 				D4E07F911F71B118003F5A89 /* SwitchboardFeatureTests.swift in Sources */,

@@ -35,6 +35,13 @@ final class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(resetSwitchboard), for: .touchUpInside)
         return button
     }()
+    
+    fileprivate lazy var resetPrefillButton: UIButton = { [unowned self] in
+        let button = UIButton()
+        button.setTitle("Reset Switchboard's Prefill", for: .normal)
+        button.addTarget(self, action: #selector(resetSwitchboardPrefill), for: .touchUpInside)
+        return button
+    }()
 
     fileprivate var switchboardDebugView: SwitchboardDebugView?
 
@@ -85,6 +92,13 @@ fileprivate extension MainViewController {
                                      resetButton.trailingAnchor.constraint(equalTo: showButton.trailingAnchor),
                                      resetButton.topAnchor.constraint(equalTo: showButton.bottomAnchor),
                                      resetButton.heightAnchor.constraint(equalTo: showButton.heightAnchor)])
+        
+        resetPrefillButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(resetPrefillButton)
+        NSLayoutConstraint.activate([resetPrefillButton.leadingAnchor.constraint(equalTo: resetButton.leadingAnchor),
+                                     resetPrefillButton.trailingAnchor.constraint(equalTo: resetButton.trailingAnchor),
+                                     resetPrefillButton.topAnchor.constraint(equalTo: resetButton.bottomAnchor),
+                                     resetPrefillButton.heightAnchor.constraint(equalTo: resetButton.heightAnchor)])
     }
 
     // MARK: - Actions
@@ -109,6 +123,11 @@ fileprivate extension MainViewController {
         SwitchboardDebugController(switchboard: ExampleSwitchboard.shared).clearCacheAndSwitchboard()
         ExampleSwitchboard.shared.activate(serverUrlString: ExampleSwitchboard.serverUrlString, completion: nil)
         print("Switchboard has been reset back to the 'server' values")
+    }
+    
+    @objc func resetSwitchboardPrefill() {
+        SwitchboardPrefillController.shared.clearCache()
+        print("Switchboard's prefill cache has been cleared")
     }
 
     // MARK: - Refreshing
