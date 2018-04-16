@@ -98,6 +98,9 @@ myExperiment.add(dependency: someOtherExperiment)
 
 If you want your cohort values to show up in the Switchboard debugging view, you can override the `availableCohorts` array in your `SwitchboardExperiment` subclass and provide the cohort strings. This will allow you to easily switch between cohorts in debugging mode and test the various UX flows.
 
+All experiments populated using an override on `SwitchboardExperiment`'s `namesMappedToCohorts` will now auto-populate into the prefill controller so someone can explicitly add them without typing them in each time. It just requires the normal `populateAvailableCohorts()` function on each `SwitchboardExperiment` subclass to be called like normal.
+
+
 ### Creating a feature
 
 Add a new enum case to `ExampleSwitchboardFeature` within `ExampleSwitchboard+Example` with the name of the feature.
