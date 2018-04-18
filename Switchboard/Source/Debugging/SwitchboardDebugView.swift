@@ -8,6 +8,10 @@
 
 #if os(iOS)
 import UIKit
+    
+internal struct SwitchboardColors {
+    static let tableBackground = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1)
+}
 
 public typealias SwitchboardDebugHandler = () -> ()
 
@@ -120,6 +124,7 @@ fileprivate extension SwitchboardDebugView {
     }
 
     func setupTable() {
+        tableView.backgroundColor = SwitchboardColors.tableBackground
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.rowHeight = 60
         tableView.register(SwitchboardDebugTapCell.self, forCellReuseIdentifier: SwitchboardDebugTapCell.reuseIdentifier)

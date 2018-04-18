@@ -25,6 +25,7 @@ final internal class SwitchboardDebugButtonCell: UITableViewCell {
 
     func configure(with setting: SwitchboardButtonSetting) {
         self.setting = setting
+        button.setTitleColor(self.tintColor, for: .normal)
         button.setTitle(setting.title, for: .normal)
         button.isEnabled = setting.enabled
         button.alpha = setting.enabled ? 1 : 0.4

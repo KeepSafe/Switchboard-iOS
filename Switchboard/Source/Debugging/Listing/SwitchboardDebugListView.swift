@@ -46,6 +46,7 @@ internal class SwitchboardDebugListView: UITableViewController {
         title = debugTitle
         navigationItem.backBarButtonItem?.title = ""
 
+        tableView.backgroundColor = SwitchboardColors.tableBackground
         tableView.rowHeight = 60
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.register(SwitchboardDebugTapCell.self, forCellReuseIdentifier: SwitchboardDebugTapCell.reuseIdentifier)
