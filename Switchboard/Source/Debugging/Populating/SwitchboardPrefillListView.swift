@@ -34,6 +34,7 @@
             navigationItem.backBarButtonItem?.title = ""
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
             
+            tableView.backgroundColor = SwitchboardColors.tableBackground
             tableView.rowHeight = 60
             tableView.tableFooterView = UIView(frame: .zero)
             tableView.register(SwitchboardDebugTapCell.self, forCellReuseIdentifier: SwitchboardDebugTapCell.reuseIdentifier)

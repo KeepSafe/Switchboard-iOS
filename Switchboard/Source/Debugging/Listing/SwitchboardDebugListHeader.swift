@@ -45,11 +45,13 @@ fileprivate extension SwitchboardDebugListHeader {
         let buttonHeight: CGFloat = 44
         
         let enableAllButton = UIButton(type: .custom)
+        enableAllButton.setTitleColor(self.tintColor, for: .normal)
         enableAllButton.addTarget(self, action: #selector(enableAllButtonTapped), for: .touchUpInside)
         enableAllButton.setTitle("Enable All", for: .normal)
         enableAllButton.translatesAutoresizingMaskIntoConstraints = false
         
         let disableAllButton = UIButton(type: .custom)
+        disableAllButton.setTitleColor(self.tintColor, for: .normal)
         disableAllButton.addTarget(self, action: #selector(disableAllButtonTapped), for: .touchUpInside)
         disableAllButton.setTitle("Disable All", for: .normal)
         disableAllButton.translatesAutoresizingMaskIntoConstraints = false

@@ -182,6 +182,7 @@ fileprivate extension SwitchboardDebugEditView {
     }
 
     func setupTable() {
+        tableView.backgroundColor = SwitchboardColors.tableBackground
         tableView.estimatedRowHeight = 60
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.register(SwitchboardDebugToggleCell.self, forCellReuseIdentifier: SwitchboardDebugToggleCell.reuseIdentifier)
