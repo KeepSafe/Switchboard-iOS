@@ -1,4 +1,4 @@
-# Switchboard for iOS & macOS
+# Switchboard for iOS & macOS (Test commit that should be skipped)
 
 [![CircleCI](https://circleci.com/gh/KeepSafe/Switchboard-iOS.svg?style=svg&circle-token=92f1089eff79d10aac87afc1106eebfb10e94a85)](https://circleci.com/gh/KeepSafe/Switchboard-iOS)
 [![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
