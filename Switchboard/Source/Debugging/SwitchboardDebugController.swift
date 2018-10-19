@@ -62,11 +62,11 @@ open class SwitchboardDebugController {
         let (inactiveExperiments, inactiveFeatures) = SwitchboardDebugCache.restoreFromCache(namespace: SwitchboardDebugCacheKeys.inactiveKey)
 
         func restore(experiments: Set<SwitchboardExperiment>) -> Set<SwitchboardExperiment> {
-            return Set(experiments.flatMap({ SwitchboardExperiment(name: $0.name, values: $0.values, availableCohorts: $0.availableCohorts, switchboard: switchboard, analytics: analytics) }))
+            return Set(experiments.compactMap({ SwitchboardExperiment(name: $0.name, values: $0.values, availableCohorts: $0.availableCohorts, switchboard: switchboard, analytics: analytics) }))
         }
 
         func restore(features: Set<SwitchboardFeature>) -> Set<SwitchboardFeature> {
-            return Set(features.flatMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: analytics) }))
+            return Set(features.compactMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: analytics) }))
         }
 
         if let activeExperiments = activeExperiments {

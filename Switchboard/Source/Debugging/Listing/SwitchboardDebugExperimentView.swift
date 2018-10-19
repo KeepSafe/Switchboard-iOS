@@ -48,7 +48,7 @@ final internal class SwitchboardDebugExperimentView: SwitchboardDebugListView {
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete, let experiments = experiments(forSection: indexPath.section) else { return }
 
         let experiment = experiments[indexPath.row]

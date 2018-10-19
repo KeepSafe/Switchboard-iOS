@@ -15,7 +15,7 @@ final internal class SwitchboardDebugTapCell: UITableViewCell {
 
     // MARK: - Instantiation
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
         textLabel?.font = .systemFont(ofSize: 18)
@@ -28,7 +28,7 @@ final internal class SwitchboardDebugTapCell: UITableViewCell {
         configure(title: setting.title, subtitle: nil, accessoryType: setting.selected ? .checkmark : .none)
     }
 
-    func configure(title: String, subtitle: String? = nil, accessoryType: UITableViewCellAccessoryType = .disclosureIndicator) {
+    func configure(title: String, subtitle: String? = nil, accessoryType: UITableViewCell.AccessoryType = .disclosureIndicator) {
         textLabel?.text = title
         detailTextLabel?.text = subtitle
         self.accessoryType = accessoryType

@@ -78,7 +78,7 @@ final internal class SwitchboardDebugExperimentEditView: SwitchboardDebugEditVie
         return isCohort(at: indexPath) && availableCohortSettings.count != 1
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete, isCohort(at: indexPath) else { return }
 
         let index = indexPath.row - (addCohortButtonIndex + 1) // offset for add cohort button

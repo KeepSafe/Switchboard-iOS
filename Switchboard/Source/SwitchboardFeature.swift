@@ -65,7 +65,7 @@ open class SwitchboardFeature: NSObject, SwitchboardValue {
     // MARK: - Public Properties
 
     /// The name of the experiment or feature
-    open let name: String
+    public let name: String
 
     /// A dictionary of values associated with this feature
     ///
@@ -151,7 +151,7 @@ extension SwitchboardFeature {
 
 extension SwitchboardFeature {
 
-    open override var hashValue: Int {
+    open override var hash: Int {
         return name.hashValue
     }
 

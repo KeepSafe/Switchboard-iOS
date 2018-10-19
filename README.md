@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/KeepSafe/Switchboard-iOS.svg?style=svg&circle-token=92f1089eff79d10aac87afc1106eebfb10e94a85)](https://circleci.com/gh/KeepSafe/Switchboard-iOS)
 [![Apache 2.0 licensed](https://img.shields.io/badge/license-Apache2-blue.svg)](https://github.com/KeepSafe/Switchboard-iOS/blob/master/LICENSE)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Switchboard.svg?maxAge=10800)]()
-[![Swift 3+](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
+[![Swift](https://img.shields.io/badge/language-Swift-blue.svg)](https://swift.org)
 [![iOS](https://img.shields.io/badge/OS-iOS-orange.svg)](https://developer.apple.com/ios/)
 [![macOS](https://img.shields.io/badge/OS-macOS-orange.svg)](https://developer.apple.com/macos/)
 

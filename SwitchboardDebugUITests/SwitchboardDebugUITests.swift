@@ -10,17 +10,16 @@ import XCTest
 import Switchboard
 @testable import SwitchboardExample
 
+let app = XCUIApplication()
+
 final class SwitchboardDebugUITests: XCTestCase {
 
     // MARK: - Setup
-
-    var app: XCUIApplication!
         
     override func setUp() {
         super.setUp()
 
         continueAfterFailure = false
-        app = XCUIApplication()
         app.launch()
 
         clearSwitchboardValuesAndCache()
@@ -30,50 +29,50 @@ final class SwitchboardDebugUITests: XCTestCase {
     // MARK: - Generic Tests
     
     func testShowingDebugView() {
-        XCTAssertFalse(app.navigationBars["Switchboard Debug"].exists)
-        app.buttons["Show Switchboard Debug"].tap()
-        XCTAssertTrue(app.navigationBars["Switchboard Debug"].exists)
+        waitFor(app.navigationBars["Switchboard Debug"], toExist: false)
+        tapEventually(app.buttons["Show Switchboard Debug"])
+        waitFor(app.navigationBars["Switchboard Debug"])
     }
 
     // MARK: - Features
 
     func testShowingFeatures() {
-        XCTAssertFalse(app.navigationBars["Features"].exists)
+        waitFor(app.navigationBars["Features"], toExist: false)
         showFeaturesList()
-        XCTAssertTrue(app.navigationBars["Features"].exists)
+        waitFor(app.navigationBars["Features"])
     }
 
     func testShowingFeatureDetail() {
         showFeatureDetail(for: "activeFeature1")
-        XCTAssertTrue(app.navigationBars["Edit Feature"].exists)
+        waitFor(app.navigationBars["Edit Feature"])
         tapCancel()
 
         showFeatureDetail(for: "inactiveFeature1")
-        XCTAssertTrue(app.navigationBars["Edit Feature"].exists)
+        waitFor(app.navigationBars["Edit Feature"])
         tapCancel()
     }
     
     func testEnableAllFeatures() {
         showFeaturesList()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
-        app.buttons["Enable All"].tap()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
-        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveFeature1"))
+        waitForCell(containing: "🔵 activeFeature1")
+        waitForCell(containing: "🔴 inactiveFeature1")
+        tapEventually(app.buttons["Enable All"])
+        waitForCell(containing: "🔵 activeFeature1")
+        waitForCell(containing: "🔵 inactiveFeature1")
     }
     
     func testDisableAllFeatures() {
         showFeaturesList()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
-        app.buttons["Disable All"].tap()
-        XCTAssertTrue(app.cellExists(containing: "🔴 activeFeature1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
+        waitForCell(containing: "🔵 activeFeature1")
+        waitForCell(containing: "🔴 inactiveFeature1")
+        tapEventually(app.buttons["Disable All"])
+        waitForCell(containing: "🔴 activeFeature1")
+        waitForCell(containing: "🔴 inactiveFeature1")
     }
 
     func testAddingFeature() {
         addFeature(selectingFromPrefill: false, named: "newFeature")
-        XCTAssertTrue(app.cellExists(containing: "newFeature"))
+        waitForCell(containing: "newFeature")
     }
 
     func testRemovingFeature() {
@@ -83,178 +82,179 @@ final class SwitchboardDebugUITests: XCTestCase {
     
     func testPrefillingFeaturesVerifyAndCancel() {
         prefillFeature(named: "prefilledFeature")
-        app.navigationBars["Features"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Features"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add a feature?"]
-        actionSheet.buttons["Select from existing"].tap()
-        XCTAssertTrue(app.cellExists(containing: "prefilledFeature"))
+        tapEventually(actionSheet.buttons["Select from existing"])
+        waitForCell(containing: "prefilledFeature")
         tapCancel()
     }
     
     func testDeletingLastPrefillFeatureDismissesPrefillView() {
         prefillFeature(named: "prefilledFeature")
         
-        app.navigationBars["Features"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Features"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add a feature?"]
-        actionSheet.buttons["Select from existing"].tap()
-        XCTAssertTrue(app.navigationBars["Prefill Features"].exists)
+        tapEventually(actionSheet.buttons["Select from existing"])
+        waitFor(app.navigationBars["Prefill Features"])
         
-        app.swipeCellLeft(containing: "prefilledFeature")
+        swipeCellLeft(containing: "prefilledFeature")
         tapDelete()
-        XCTAssertFalse(app.cellExists(containing: "prefilledFeature"))
-        XCTAssertFalse(app.navigationBars["Prefill Features"].exists)
+
+        waitForCell(containing: "prefilledFeature", toExist: false)
+        waitFor(app.navigationBars["Prefill Features"], toExist: false)
     }
 
     func testTogglingFeatures() {
         showFeaturesList()
 
         // Toggle active to inactive
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        waitForCell(containing: "🔵 activeFeature1")
         showFeatureDetail(for: "activeFeature1")
         toggleEnabledSwitch()
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "🔴 activeFeature1"))
+        waitForCell(containing: "🔴 activeFeature1")
 
         // Toggle inactive to active
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveFeature1"))
+        waitForCell(containing: "🔴 inactiveFeature1")
         showFeatureDetail(for: "inactiveFeature1")
         toggleEnabledSwitch()
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveFeature1"))
+        waitForCell(containing: "🔵 inactiveFeature1")
     }
 
     func testCancellingFeatureChanges() {
         showFeaturesList()
 
         // Toggle active to inactive but cancel before saving
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        waitForCell(containing: "🔵 activeFeature1")
         showFeatureDetail(for: "activeFeature1")
         toggleEnabledSwitch()
         tapCancel()
-        XCTAssertFalse(app.cellExists(containing: "🔴 activeFeature1"))
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeFeature1"))
+        waitForCell(containing: "🔴 activeFeature1", toExist: false)
+        waitForCell(containing: "🔵 activeFeature1")
     }
 
     // MARK: - Experiments
 
     func testShowingExperiments() {
-        XCTAssertFalse(app.navigationBars["Experiments"].exists)
+        waitFor(app.navigationBars["Experiments"], toExist: false)
         showExperimentsList()
-        XCTAssertTrue(app.navigationBars["Experiments"].exists)
+        waitFor(app.navigationBars["Experiments"])
     }
 
     func testShowingExperimentDetail() {
         showExperimentDetail(for: "activeExperiment1")
-        XCTAssertTrue(app.navigationBars["Edit Experiment"].exists)
+        waitFor(app.navigationBars["Edit Experiment"])
         tapCancel()
 
         showExperimentDetail(for: "inactiveExperiment1")
-        XCTAssertTrue(app.navigationBars["Edit Experiment"].exists)
+        waitFor(app.navigationBars["Edit Experiment"])
         tapCancel()
     }
     
     func testEnableAllExperiments() {
         showExperimentsList()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
-        app.buttons["Enable All"].tap()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
-        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveExperiment1"))
+        waitForCell(containing: "🔵 activeExperiment1")
+        waitForCell(containing: "🔴 inactiveExperiment1")
+        tapEventually(app.buttons["Enable All"])
+        waitForCell(containing: "🔵 activeExperiment1")
+        waitForCell(containing: "🔵 inactiveExperiment1")
     }
     
     func testDisableAllExperiments() {
         showExperimentsList()
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
-        app.buttons["Disable All"].tap()
-        XCTAssertTrue(app.cellExists(containing: "🔴 activeExperiment1"))
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
+        waitForCell(containing: "🔵 activeExperiment1")
+        waitForCell(containing: "🔴 inactiveExperiment1")
+        tapEventually(app.buttons["Disable All"])
+        waitForCell(containing: "🔴 activeExperiment1")
+        waitForCell(containing: "🔴 inactiveExperiment1")
     }
     
     func testPrefillingExperimentsCancel() {
         showExperimentsList()
-        app.navigationBars["Experiments"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Experiments"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add an experiment?"]
-        actionSheet.buttons["Select from existing"].tap()
+        tapEventually(actionSheet.buttons["Select from existing"])
         tapCancel()
     }
 
     func testPrefillingExperimentsFromProgrammaticNameMappings() {
         addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment")
-        XCTAssertTrue(app.cellExists(containing: "availableCohortExperiment"))
+        waitForCell(containing: "availableCohortExperiment")
     }
     
     func testDeletingLastPrefillDismissesPrefillView() {
         showExperimentsList()
-        app.navigationBars["Experiments"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Experiments"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add an experiment?"]
-        actionSheet.buttons["Select from existing"].tap()
-        XCTAssertTrue(app.navigationBars["Prefill Experiments"].exists)
+        tapEventually(actionSheet.buttons["Select from existing"])
+        waitFor(app.navigationBars["Prefill Experiments"])
         
-        app.swipeCellLeft(containing: "availableCohortExperiment")
+        swipeCellLeft(containing: "availableCohortExperiment")
         tapDelete()
-        XCTAssertFalse(app.cellExists(containing: "availableCohortExperiment"))
-        XCTAssertFalse(app.navigationBars["Prefill Experiments"].exists)
+        waitForCell(containing: "availableCohortExperiment", toExist: false)
+        waitFor(app.navigationBars["Prefill Experiments"], toExist: false)
     }
     
     func testPrepopulatingAvailableCohorts() {
         addExperiment(selectingFromPrefill: true, named: "availableCohortExperiment")
         showExperimentDetail(for: "availableCohortExperiment")
-        XCTAssertTrue(app.cellExists(containing: "control"))
-        XCTAssertTrue(app.cellExists(containing: "cohort1"))
-        XCTAssertTrue(app.cellExists(containing: "cohort2"))
+        waitForCell(containing: "control")
+        waitForCell(containing: "cohort1")
+        waitForCell(containing: "cohort2")
         tapCancel()
     }
 
     func testAddingExperiment() {
         addExperiment(selectingFromPrefill: false, named: "newExperiment", cohort: "yay")
-        XCTAssertTrue(app.cellExists(containing: "newExperiment"))
+        waitForCell(containing: "newExperiment")
     }
 
     func testRemovingExperiment() {
         addExperiment(selectingFromPrefill: false, named: "newExperiment", cohort: "yay")
-        XCTAssertTrue(app.cellExists(containing: "newExperiment"))
+        waitForCell(containing: "newExperiment")
 
-        app.swipeCellLeft(containing: "newExperiment")
+        swipeCellLeft(containing: "newExperiment")
         tapDelete()
-        XCTAssertFalse(app.cellExists(containing: "newExperiment"))
+        waitForCell(containing: "newExperiment", toExist: false)
     }
 
     func testTogglingExperiments() {
         showExperimentsList()
 
         // Toggle active to inactive
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        waitForCell(containing: "🔵 activeExperiment1")
         showExperimentDetail(for: "activeExperiment1")
         toggleEnabledSwitch()
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "🔴 activeExperiment1"))
+        waitForCell(containing: "🔴 activeExperiment1")
 
         // Toggle inactive to active
-        XCTAssertTrue(app.cellExists(containing: "🔴 inactiveExperiment1"))
+        waitForCell(containing: "🔴 inactiveExperiment1")
         showExperimentDetail(for: "inactiveExperiment1")
         toggleEnabledSwitch()
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "🔵 inactiveExperiment1"))
+        waitForCell(containing: "🔵 inactiveExperiment1")
     }
 
     func testAddingCohort() {
         addExperimentCohort(named: "newCohort", on: "activeExperiment1")
 
-        XCTAssertTrue(app.cellExists(containing: "newCohort"))
-        XCTAssertFalse(app.cellExists(containing: "123")) // old cohort value
+        waitForCell(containing: "newCohort")
+        waitForCell(containing: "123", toExist: false) // old cohort value
     }
 
     func testDeletingNewCohortResetsToOriginalCohort() {
         addExperimentCohort(named: "newCohort", on: "activeExperiment1")
-        XCTAssertTrue(app.cellExists(containing: "newCohort"))
+        waitForCell(containing: "newCohort")
 
-        app.tapCell(containing: "activeExperiment1")
-        app.swipeCellLeft(containing: "newCohort")
+        tapCell(containing: "activeExperiment1")
+        swipeCellLeft(containing: "newCohort")
         tapDelete()
         saveForm()
 
-        XCTAssertFalse(app.cellExists(containing: "newCohort"))
-        XCTAssertTrue(app.cellExists(containing: "123")) // gets set back to original value
+        waitForCell(containing: "newCohort", toExist: false)
+        waitForCell(containing: "123") // gets set back to original value
     }
 
     func testChangingExperimentState() {
@@ -262,44 +262,44 @@ final class SwitchboardDebugUITests: XCTestCase {
 
         // Reset it just in case we had a failed test scenario
         showExperimentDetail(for: "activeExperiment1")
-        app.buttons["Reset experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Entitled to start"))
+        tapEventually(app.buttons["Reset experiment"])
+        waitForTextField(containing: "New State: Entitled to start")
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "entitled to start"))
+        waitForCell(containing: "entitled to start")
 
         // Start it
         showExperimentDetail(for: "activeExperiment1")
-        XCTAssertTrue(app.textFieldExists(containing: "Current State: Entitled to start"))
-        app.buttons["Start experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Started"))
+        waitForTextField(containing: "Current State: Entitled to start")
+        tapEventually(app.buttons["Start experiment"])
+        waitForTextField(containing: "New State: Started")
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "started"))
+        waitForCell(containing: "started")
 
         // Complete it
         showExperimentDetail(for: "activeExperiment1")
-        app.buttons["Complete experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Completed"))
+        tapEventually(app.buttons["Complete experiment"])
+        waitForTextField(containing: "New State: Completed")
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "completed"))
+        waitForCell(containing: "completed")
 
         // Reset it
         showExperimentDetail(for: "activeExperiment1")
-        app.buttons["Reset experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Entitled to start"))
+        tapEventually(app.buttons["Reset experiment"])
+        waitForTextField(containing: "New State: Entitled to start")
         saveForm()
-        XCTAssertTrue(app.cellExists(containing: "entitled to start"))
+        waitForCell(containing: "entitled to start")
     }
 
     func testCancellingExperimentChanges() {
         showExperimentsList()
 
         // Toggle active to inactive but cancel before saving
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        waitForCell(containing: "🔵 activeExperiment1")
         showExperimentDetail(for: "activeExperiment1")
         toggleEnabledSwitch()
         tapCancel()
-        XCTAssertFalse(app.cellExists(containing: "🔴 activeExperiment1"))
-        XCTAssertTrue(app.cellExists(containing: "🔵 activeExperiment1"))
+        waitForCell(containing: "🔴 activeExperiment1", toExist: false)
+        waitForCell(containing: "🔵 activeExperiment1")
     }
 
     func testPreventingExperimentFromStarting() {
@@ -308,16 +308,16 @@ final class SwitchboardDebugUITests: XCTestCase {
 
         // Reset it just in case we had a failed test scenario
         showExperimentDetail(for: preventedExp)
-        app.buttons["Reset experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Entitled to start"))
+        tapEventually(app.buttons["Reset experiment"])
+        waitForTextField(containing: "New State: Entitled to start")
         saveForm()
 
         // Try to start it but it should fail
         showExperimentDetail(for: preventedExp)
-        app.buttons["Start experiment"].tap()
-        XCTAssertTrue(app.textFieldExists(containing: "New State: Started"))
+        tapEventually(app.buttons["Start experiment"])
+        waitForTextField(containing: "New State: Started")
         saveForm()
-        XCTAssertFalse(app.cellExists(containing: "started ∙ cohort: yay")) // specifically, this experiment
+        waitForCell(containing: "started ∙ cohort: yay", toExist: false) // specifically, this experiment
     }
     
 }
@@ -327,11 +327,11 @@ final class SwitchboardDebugUITests: XCTestCase {
 fileprivate extension SwitchboardDebugUITests {
 
     func clearSwitchboardValuesAndCache() {
-        app.buttons["Reset Switchboard"].tap()
+        tapEventually(app.buttons["Reset Switchboard"])
     }
     
     func clearSwitchboardPrefillCache() {
-        app.buttons["Reset Switchboard's Prefill"].tap()
+        tapEventually(app.buttons["Reset Switchboard's Prefill"])
     }
 
     // TODO: This seems broken as of Xcode 9; alternatives?
@@ -344,54 +344,54 @@ fileprivate extension SwitchboardDebugUITests {
         start.press(forDuration: 1, thenDragTo: finish)
 
         if confirmed {
-            app.alerts["Are you sure?"].buttons["Confirm"].tap()
+            tapEventually(app.alerts["Are you sure?"].buttons["Confirm"])
         } else {
-            app.alerts["Are you sure?"].buttons["Cancel"].tap()
+            tapEventually(app.alerts["Are you sure?"].buttons["Cancel"])
         }
     }
 
     func showSwitchboardDebug() {
-        app.buttons["Show Switchboard Debug"].tap()
+        tapEventually(app.buttons["Show Switchboard Debug"])
     }
 
     func showFeaturesList() {
         showSwitchboardDebug()
-        app.tapCell(containing: "Features")
+        tapCell(containing: "Features")
     }
 
     func showExperimentsList() {
         showSwitchboardDebug()
-        app.tapCell(containing: "Experiments")
+        tapCell(containing: "Experiments")
     }
 
     func showFeatureDetail(for featureName: String) {
         if app.navigationBars["Features"].exists == false {
             showFeaturesList()
         }
-        app.tapCell(containing: featureName)
+        tapCell(containing: featureName)
     }
 
     func showExperimentDetail(for experimentName: String) {
         if app.navigationBars["Experiments"].exists == false {
             showExperimentsList()
         }
-        app.tapCell(containing: experimentName)
+        tapCell(containing: experimentName)
     }
 
     func addFeature(selectingFromPrefill: Bool, named name: String) {
         showFeaturesList()
 
-        app.navigationBars["Features"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Features"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add a feature?"]
         if selectingFromPrefill {
-            actionSheet.buttons["Select from existing"].tap()
-            app.tapCell(containing: name)
+            tapEventually(actionSheet.buttons["Select from existing"])
+            tapCell(containing: name)
         } else {
             let addFeatureAlert = app.alerts["Add Feature"]
             let featureNameTextField = addFeatureAlert.collectionViews.textFields["Feature name"]
-            featureNameTextField.tap()
+            tapEventually(featureNameTextField)
             featureNameTextField.typeText(name)
-            addFeatureAlert.buttons["Save"].tap()
+            tapEventually(addFeatureAlert.buttons["Save"])
         }
     }
     
@@ -401,58 +401,58 @@ fileprivate extension SwitchboardDebugUITests {
     }
     
     func removeFeature(named name: String) {
-        XCTAssertTrue(app.cellExists(containing: name))
-        app.swipeCellLeft(containing: name)
+        waitForCell(containing: name)
+        swipeCellLeft(containing: name)
         tapDelete()
-        XCTAssertFalse(app.cellExists(containing: name))
+        waitForCell(containing: name, toExist: false)
     }
 
     func addExperiment(selectingFromPrefill: Bool, named name: String, cohort: String = "yay") {
         showExperimentsList()
 
-        app.navigationBars["Experiments"].buttons["Add"].tap()
+        tapEventually(app.navigationBars["Experiments"].buttons["Add"])
         let actionSheet = app.sheets["How do you want to add an experiment?"]
         if selectingFromPrefill {
-            actionSheet.buttons["Select from existing"].tap()
-            app.tapCell(containing: name)
+            tapEventually(actionSheet.buttons["Select from existing"])
+            tapCell(containing: name)
         } else {
-            actionSheet.buttons["Type in name and cohort"].tap()
+            tapEventually(actionSheet.buttons["Type in name and cohort"])
             let addExperimentAlert = app.alerts["Add Experiment"]
             let featureNameTextField = addExperimentAlert.collectionViews.textFields["Experiment name"]
-            featureNameTextField.tap()
+            tapEventually(featureNameTextField)
             featureNameTextField.typeText(name)
             let cohortNameTextField = addExperimentAlert.collectionViews.textFields["Cohort name"]
-            cohortNameTextField.tap()
+            tapEventually(cohortNameTextField)
             cohortNameTextField.typeText(cohort)
-            addExperimentAlert.buttons["Save"].tap()
+            tapEventually(addExperimentAlert.buttons["Save"])
         }
     }
 
     func addExperimentCohort(named name: String, on experimentName: String) {
         showExperimentDetail(for: experimentName)
 
-        app.tapCell(containing: "Add cohort")
+        tapCell(containing: "Add cohort")
         let addCohortAlert = app.alerts["Add Cohort"]
         addCohortAlert.collectionViews.textFields["Cohort name"].typeText("newCohort")
-        addCohortAlert.buttons["Save"].tap()
+        tapEventually(addCohortAlert.buttons["Save"])
 
         saveForm()
     }
 
     func tapDelete() {
-        app.buttons["Delete"].tap()
+        tapEventually(app.buttons["Delete"])
     }
 
     func tapCancel() {
-        app.buttons["Cancel"].tap()
+        tapEventually(app.buttons["Cancel"])
     }
 
     func saveForm() {
-        app.buttons["Save"].tap()
+        tapEventually(app.buttons["Save"])
     }
 
     func toggleEnabledSwitch() {
-        app.switches["Enabled Toggle"].tap()
+        tapEventually(app.switches["Enabled Toggle"])
     }
 
 }

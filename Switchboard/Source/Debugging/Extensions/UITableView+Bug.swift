@@ -19,14 +19,14 @@ extension UITableView {
         
         let headerWidth = headerView.bounds.size.width
         let temporaryWidthConstraints = NSLayoutConstraint.constraints(withVisualFormat: "[headerView(width)]",
-                                                                       options: NSLayoutFormatOptions(rawValue: UInt(0)),
+                                                                       options: NSLayoutConstraint.FormatOptions(rawValue: UInt(0)),
                                                                        metrics: ["width": headerWidth],
                                                                        views: ["headerView": headerView])
         headerView.addConstraints(temporaryWidthConstraints)
         headerView.setNeedsLayout()
         headerView.layoutIfNeeded()
         
-        let headerSize = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        let headerSize = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
         let height = headerSize.height
         var frame = headerView.frame
         

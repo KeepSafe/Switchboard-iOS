@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D403DFF61F7074530083242E /* Switchboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; };
 		D403E0151F7075420083242E /* Switchboard.h in Headers */ = {isa = PBXBuildFile; fileRef = D403E0141F7074A50083242E /* Switchboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4115E16217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */; };
 		D412AFBA1F9A9A25006E7BC9 /* AvailableCohortExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */; };
 		D412AFBB1F9A9AEC006E7BC9 /* AvailableCohortExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */; };
 		D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */; };
@@ -132,6 +133,7 @@
 		D403E0111F7074A50083242E /* SwitchboardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardKeys.swift; sourceTree = "<group>"; };
 		D403E0131F7074A50083242E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D403E0141F7074A50083242E /* Switchboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Switchboard.h; sourceTree = "<group>"; };
+		D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Switchboard.swift"; sourceTree = "<group>"; };
 		D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCohortExperiment.swift; sourceTree = "<group>"; };
 		D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Switchboard.swift"; sourceTree = "<group>"; };
 		D42937311F79AD72000D06D6 /* SwitchboardDebugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */,
+				D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -574,11 +577,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Keepsafe Software Inc";
 				TargetAttributes = {
 					D403DFEB1F7074530083242E = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					D403DFF41F7074530083242E = {
@@ -587,10 +591,12 @@
 					};
 					D4E060791F84463300F385D3 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					D4E060B11F844D0D00F385D3 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 						TestTargetID = D4E060791F84463300F385D3;
 					};
@@ -731,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */,
+				D4115E16217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift in Sources */,
 				D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */,
 				D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */,
 				D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */,
@@ -789,6 +796,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -796,6 +804,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -828,12 +837,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macos";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_32_BIT) $(NATIVE_ARCH_64_BIT) $(ARCHS_STANDARD)";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -853,6 +862,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -860,6 +870,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -885,12 +896,12 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macos";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_32_BIT) $(NATIVE_ARCH_64_BIT) $(ARCHS_STANDARD)";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -912,11 +923,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.Switchboard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_64_BIT) $(NATIVE_ARCH_32_BIT) $(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -936,11 +949,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.Switchboard;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_64_BIT) $(NATIVE_ARCH_32_BIT) $(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -954,10 +969,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_32_BIT) $(NATIVE_ARCH_64_BIT) $(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -971,10 +987,11 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.keepsafe.SwitchboardTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos macosx";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7 x86_64 i386";
+				VALID_ARCHS = "$(NATIVE_ARCH_32_BIT) $(NATIVE_ARCH_64_BIT) $(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -992,9 +1009,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1012,9 +1030,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};
@@ -1031,10 +1050,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SwitchboardExample;
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -1051,10 +1071,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
-				SWIFT_VERSION = 4.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SwitchboardExample;
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};

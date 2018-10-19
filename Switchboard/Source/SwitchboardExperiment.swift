@@ -85,7 +85,7 @@ open class SwitchboardExperiment: NSObject, SwitchboardValue {
     // MARK: - Public Properties
 
     /// The name of the experiment
-    open let name: String
+    public let name: String
 
     /// The cohort this experiment is a part of
     ///
@@ -286,7 +286,7 @@ extension SwitchboardExperiment {
 
 extension SwitchboardExperiment {
 
-    open override var hashValue: Int {
+    open override var hash: Int {
         return name.hashValue
     }
 

@@ -29,7 +29,7 @@ open class SwitchboardProperties {
 
     // MARK: - Public Properties
 
-    open static func defaults(withUuid uuid: String) -> [String: Any] {
+    public static func defaults(withUuid uuid: String) -> [String: Any] {
         let parameters: [String: Any] = [
             SwitchboardPropertyKeys.uuid: uuid,
             SwitchboardPropertyKeys.osMajorVersion: ProcessInfo().operatingSystemVersion.majorVersion,
