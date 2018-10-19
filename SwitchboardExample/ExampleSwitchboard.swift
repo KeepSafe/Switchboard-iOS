@@ -102,10 +102,10 @@ fileprivate extension ExampleSwitchboard {
         // Otherwise, use the non-debug cache and pass in the Switchboard and analytics provider where needed
         let (experiments, features) = SwitchboardCache.restoreFromCache()
         if let experiments = experiments {
-            self.experiments = Set(experiments.flatMap({ SwitchboardExperiment(name: $0.name, values: $0.values, switchboard: self, analytics: self.analytics) }))
+            self.experiments = Set(experiments.compactMap({ SwitchboardExperiment(name: $0.name, values: $0.values, switchboard: self, analytics: self.analytics) }))
         }
         if let features = features {
-            self.features = Set(features.flatMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: self.analytics) }))
+            self.features = Set(features.compactMap({ SwitchboardFeature(name: $0.name, values: $0.values, analytics: self.analytics) }))
         }
     }
 

@@ -15,7 +15,7 @@ final internal class SwitchboardDebugTextViewCell: UITableViewCell {
 
     // MARK: - Instantiation
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
         setupView()
