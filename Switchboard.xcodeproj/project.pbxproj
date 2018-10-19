@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D403DFF61F7074530083242E /* Switchboard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403DFEC1F7074530083242E /* Switchboard.framework */; };
 		D403E0151F7075420083242E /* Switchboard.h in Headers */ = {isa = PBXBuildFile; fileRef = D403E0141F7074A50083242E /* Switchboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D4115E16217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */; };
 		D412AFBA1F9A9A25006E7BC9 /* AvailableCohortExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */; };
 		D412AFBB1F9A9AEC006E7BC9 /* AvailableCohortExperiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */; };
 		D423188E1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */; };
@@ -132,6 +133,7 @@
 		D403E0111F7074A50083242E /* SwitchboardKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardKeys.swift; sourceTree = "<group>"; };
 		D403E0131F7074A50083242E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D403E0141F7074A50083242E /* Switchboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Switchboard.h; sourceTree = "<group>"; };
+		D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Switchboard.swift"; sourceTree = "<group>"; };
 		D412AFB91F9A9A25006E7BC9 /* AvailableCohortExperiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableCohortExperiment.swift; sourceTree = "<group>"; };
 		D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Switchboard.swift"; sourceTree = "<group>"; };
 		D42937311F79AD72000D06D6 /* SwitchboardDebugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchboardDebugController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				D423188D1F845C7D00A66EDC /* XCUIApplication+Switchboard.swift */,
+				D4115E15217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D454BDFD1F8BE6760015EFEE /* ActiveExperiment1.swift in Sources */,
+				D4115E16217A2F7C0061AEF1 /* XCTestCase+Switchboard.swift in Sources */,
 				D454BDFE1F8BE6760015EFEE /* ActiveFeature1.swift in Sources */,
 				D42318911F846C6C00A66EDC /* AppDelegate.swift in Sources */,
 				D42318921F846C6C00A66EDC /* ExampleSwitchboard.swift in Sources */,

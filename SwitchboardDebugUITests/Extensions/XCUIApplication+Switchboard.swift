@@ -15,25 +15,9 @@ extension XCUIApplication {
         return matches.element(boundBy: 0)
     }
 
-    func textFieldExists(containing label: String) -> Bool {
-        return textField(containing: label).exists
-    }
-
     func cell(containing label: String) -> XCUIElement {
         let matches = cells.containing(NSPredicate(format: "label CONTAINS %@", label))
         return matches.element(boundBy: 0)
-    }
-
-    func tapCell(containing label: String) {
-        cell(containing: label).tap()
-    }
-
-    func swipeCellLeft(containing label: String) {
-        cell(containing: label).swipeLeft()
-    }
-
-    func cellExists(containing label: String) -> Bool {
-        return cell(containing: label).exists
     }
 
 }
