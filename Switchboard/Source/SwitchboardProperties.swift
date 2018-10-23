@@ -23,6 +23,7 @@ public struct SwitchboardPropertyKeys {
     public static let version = "version"
     public static let build = "build"
     public static let uuid = "uuid"
+    public static let installId = "installId"
 }
 
 open class SwitchboardProperties {
@@ -40,7 +41,8 @@ open class SwitchboardProperties {
             SwitchboardPropertyKeys.country: Locale.current.regionCode ?? unknown,
             SwitchboardPropertyKeys.appId: bundleIdentifier,
             SwitchboardPropertyKeys.version: versionName,
-            SwitchboardPropertyKeys.build: buildName
+            SwitchboardPropertyKeys.build: buildName,
+            SwitchboardPropertyKeys.installId: installId
         ]
         return parameters
     }
@@ -72,6 +74,15 @@ open class SwitchboardProperties {
         #else
             return unknown
         #endif
+    }
+    private static let installIdKey = "com.keepsafe.switchboard.properties.installId"
+    /// ID generated once per install that is used to assign experiments before the user has a tracking ID/account
+    fileprivate static var installId: String {
+        if let existingId = UserDefaults.standard.string(forKey: installIdKey) { return existingId }
+
+        let generatedId = NSUUID().uuidString
+        UserDefaults.standard.set(generatedId, forKey: installIdKey)
+        return generatedId
     }
 
 }
